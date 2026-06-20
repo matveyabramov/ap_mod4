@@ -18,6 +18,86 @@ body {
     overflow: hidden;
 }
 
+.site-stage {
+    position: relative;
+}
+
+
+.screen {
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.crystal-transition {
+    position: absolute;
+    inset: 0;
+    background-color: #000000;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.crystal-transition__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+}
+
+.crystal-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.crystal-holder {
+    position: relative;
+    width: min(700px, 65svh);
+    aspect-ratio: 1;
+    transform-origin: center;
+    will-change: transform;
+}
+
+.crystal-poster,
+.crystal-canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 100ms linear;
+}
+
+.crystal-canvas {
+    opacity: 0;
+}
+
+.crystal-layer.is-sequence-ready .crystal-poster {
+    opacity: 0;
+}
+
+.crystal-layer.is-sequence-ready .crystal-canvas {
+    opacity: 1;
+}
+
+.site-stage.is-crystal-transition .hero {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.site-stage.is-crystal-transition .crystal-transition,
+.site-stage.is-crystal-transition .crystal-layer {
+    visibility: visible;
+    opacity: 1;
+}
+
 .text {
     font-size: 16px;
     line-height: 120%;
@@ -40,8 +120,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 24px;
     border: none;
+}
+
+.button:hover {
+    background-color: #b9b9b9;
+}
+
+.scroll {
+    display: flex;
+    align-items: center;
+    gap: 2px;
 }
 
 .hero__wrapper,
@@ -55,7 +145,7 @@ body {
 .hero__wrapper {
     height: 100svh;
     min-height: 0;
-    grid-template-rows: 80px 53px auto 1px minmax(0, 1fr) 69px 150px 151px;
+    grid-template-rows: 80px 53px auto 1px minmax(0, 4fr) minmax(auto, 0.7fr) minmax(auto, 1.5fr) minmax(80px, 1.5fr);
 }
 
 .hero__wrapper::before {
@@ -129,7 +219,7 @@ body {
 }
 
 .header__nav-item:hover {
-    text-decoration: underline;
+    background-color: #555555;
 }
 
 .header__btn {
@@ -240,8 +330,6 @@ body {
 }
 
 .hero__scroll {
-    display: flex;
-    align-items: center;
     grid-column: 7 / 8;
     grid-row: 8;
     align-self: end;
