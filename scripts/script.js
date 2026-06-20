@@ -1,12 +1,19 @@
 (function () {
     'use strict';
 
+    const ABOUT_TRANSITION_DURATION = 800;
+    const ABOUT_TRANSITION_EASING = 'cubic-bezier(0.65, 0, 0.35, 1)';
+    const ABOUT_CROSSFADE_START = 0.62;
+    const ABOUT_TARGET_SELECTOR = '.model-viewer__stage';
+
     function initializeMeteorTransition() {
         const siteStage = document.querySelector('.site-stage');
         const heroMeteor = document.querySelector('.meteor__thumbnail');
         const meteorLayer = document.querySelector('.meteor-layer');
         const meteorHolder = document.querySelector('.meteor-holder');
         const meteorCanvas = document.querySelector('.meteor-canvas');
+        const about = document.querySelector('.about');
+        const aboutTarget = document.querySelector(ABOUT_TARGET_SELECTOR);
         const heroButton = document.querySelector('.hero__btn');
 
         if (
@@ -15,6 +22,8 @@
             !meteorLayer ||
             !meteorHolder ||
             !meteorCanvas ||
+            !about ||
+            !aboutTarget ||
             typeof window.MeteorSequence !== 'function'
         ) {
             return;
@@ -39,6 +48,8 @@
         let sequenceInputLocked = false;
         let sequenceInputUnlockAt = 0;
         let aboutVisible = false;
+        let isTransitioningToAbout = false;
+        let aboutTransitionAnimations = [];
 
         const sequenceReady = sequence.load().then(
             () => true,
@@ -81,6 +92,174 @@
             const scaleY = heroBounds.height / holderBounds.height;
 
             return `translate(${offsetX}px, ${offsetY}px) scale(${scaleX}, ${scaleY})`;
+        }
+
+        function getAboutTransform(holderBounds, targetBounds) {
+            const holderCenterX = holderBounds.left + holderBounds.width / 2;
+            const holderCenterY = holderBounds.top + holderBounds.height / 2;
+            const targetCenterX = targetBounds.left + targetBounds.width / 2;
+            const targetCenterY = targetBounds.top + targetBounds.height / 2;
+            const offsetX = targetCenterX - holderCenterX;
+            const offsetY = targetCenterY - holderCenterY;
+            const scaleX = targetBounds.width / holderBounds.width;
+            const scaleY = targetBounds.height / holderBounds.height;
+
+            return `translate(${offsetX}px, ${offsetY}px) scale(${scaleX}, ${scaleY})`;
+        }
+
+        function cancelAboutTransitionAnimations() {
+            aboutTransitionAnimations.forEach((animation) => animation.cancel());
+            aboutTransitionAnimations = [];
+        }
+
+        function aboutOwnsPageInput() {
+            const pageInputLocked = window.sectionTransitions?.isInputLocked?.() ?? false;
+
+            return (
+                !about.classList.contains('page-section') ||
+                (
+                    about.classList.contains('is-active') &&
+                    !about.classList.contains('is-transitioning') &&
+                    !pageInputLocked
+                )
+            );
+        }
+
+        async function transitionToAbout() {
+            if (aboutVisible || isTransitioningToAbout) {
+                return;
+            }
+
+            isTransitioningToAbout = true;
+            const holderBounds = meteorHolder.getBoundingClientRect();
+            const targetBounds = aboutTarget.getBoundingClientRect();
+            const targetTransform = getAboutTransform(holderBounds, targetBounds);
+            siteStage.classList.add('is-about-transitioning');
+
+            if (reducedMotion.matches || !holderBounds.width || !targetBounds.width) {
+                aboutVisible = true;
+                siteStage.classList.add('is-about-visible');
+                siteStage.classList.remove('is-about-transitioning');
+                isTransitioningToAbout = false;
+                window.dispatchEvent(new CustomEvent('page-sections:activate', {
+                    detail: { selector: '.about' },
+                }));
+                return;
+            }
+
+            const options = {
+                duration: ABOUT_TRANSITION_DURATION,
+                easing: ABOUT_TRANSITION_EASING,
+                fill: 'both',
+            };
+
+            aboutTransitionAnimations = [
+                meteorHolder.animate(
+                    [
+                        { transform: 'translate(0, 0) scale(1, 1)' },
+                        { transform: targetTransform },
+                    ],
+                    options,
+                ),
+                about.animate([{ opacity: 0 }, { opacity: 1 }], options),
+                aboutTarget.animate(
+                    [
+                        { opacity: 0, offset: 0 },
+                        { opacity: 0, offset: ABOUT_CROSSFADE_START },
+                        { opacity: 1, offset: 1 },
+                    ],
+                    options,
+                ),
+                meteorLayer.animate(
+                    [
+                        { opacity: 1, offset: 0 },
+                        { opacity: 1, offset: ABOUT_CROSSFADE_START },
+                        { opacity: 0, offset: 1 },
+                    ],
+                    options,
+                ),
+            ];
+
+            await Promise.all(
+                aboutTransitionAnimations.map((animation) => animation.finished.catch(() => {})),
+            );
+
+            aboutVisible = true;
+            siteStage.classList.add('is-about-visible');
+            siteStage.classList.remove('is-about-transitioning');
+            await new Promise((resolve) => requestAnimationFrame(resolve));
+            cancelAboutTransitionAnimations();
+            isTransitioningToAbout = false;
+            window.dispatchEvent(new CustomEvent('page-sections:activate', {
+                detail: { selector: '.about' },
+            }));
+        }
+
+        async function transitionFromAbout(delta) {
+            if (!aboutVisible || isTransitioningToAbout) {
+                return;
+            }
+
+            isTransitioningToAbout = true;
+            const holderBounds = meteorHolder.getBoundingClientRect();
+            const targetBounds = aboutTarget.getBoundingClientRect();
+            const targetTransform = getAboutTransform(holderBounds, targetBounds);
+            siteStage.classList.add('is-about-transitioning');
+
+            if (reducedMotion.matches || !holderBounds.width || !targetBounds.width) {
+                aboutVisible = false;
+                siteStage.classList.remove('is-about-visible', 'is-about-transitioning');
+                isTransitioningToAbout = false;
+                window.dispatchEvent(new CustomEvent('page-sections:deactivate'));
+                updateScrollProgress(delta);
+                return;
+            }
+
+            const options = {
+                duration: ABOUT_TRANSITION_DURATION,
+                easing: ABOUT_TRANSITION_EASING,
+                fill: 'both',
+            };
+            const reverseCrossfadeEnd = 1 - ABOUT_CROSSFADE_START;
+
+            aboutTransitionAnimations = [
+                meteorHolder.animate(
+                    [
+                        { transform: targetTransform },
+                        { transform: 'translate(0, 0) scale(1, 1)' },
+                    ],
+                    options,
+                ),
+                about.animate([{ opacity: 1 }, { opacity: 0 }], options),
+                aboutTarget.animate(
+                    [
+                        { opacity: 1, offset: 0 },
+                        { opacity: 0, offset: reverseCrossfadeEnd },
+                        { opacity: 0, offset: 1 },
+                    ],
+                    options,
+                ),
+                meteorLayer.animate(
+                    [
+                        { opacity: 0, offset: 0 },
+                        { opacity: 1, offset: reverseCrossfadeEnd },
+                        { opacity: 1, offset: 1 },
+                    ],
+                    options,
+                ),
+            ];
+
+            await Promise.all(
+                aboutTransitionAnimations.map((animation) => animation.finished.catch(() => {})),
+            );
+
+            aboutVisible = false;
+            siteStage.classList.remove('is-about-visible', 'is-about-transitioning');
+            await new Promise((resolve) => requestAnimationFrame(resolve));
+            cancelAboutTransitionAnimations();
+            isTransitioningToAbout = false;
+            window.dispatchEvent(new CustomEvent('page-sections:deactivate'));
+            updateScrollProgress(delta);
         }
 
         async function startTransition() {
@@ -144,9 +323,7 @@
 
         function updateScrollProgress(delta) {
             if (scrollProgress === 1 && delta > 0) {
-                // TEMP: simple section switch after meteor sequence. Replace with smooth transition later.
-                aboutVisible = true;
-                siteStage.classList.add('is-about-visible');
+                transitionToAbout();
                 return;
             }
 
@@ -255,13 +432,20 @@
                 return;
             }
 
+            if (isTransitioningToAbout) {
+                event.preventDefault();
+                return;
+            }
+
             if (aboutVisible) {
                 event.preventDefault();
 
+                if (!aboutOwnsPageInput()) {
+                    return;
+                }
+
                 if (delta < -2) {
-                    aboutVisible = false;
-                    siteStage.classList.remove('is-about-visible');
-                    updateScrollProgress(delta);
+                    transitionFromAbout(delta);
                 }
 
                 return;
@@ -291,6 +475,11 @@
         }
 
         function handleTouchStart(event) {
+            if (event.target instanceof Element && event.target.closest('.model-viewer__stage')) {
+                touchStartY = null;
+                return;
+            }
+
             touchStartY = event.changedTouches[0].clientY;
         }
 
@@ -312,13 +501,20 @@
                 return;
             }
 
+            if (isTransitioningToAbout) {
+                event.preventDefault();
+                return;
+            }
+
             if (aboutVisible) {
                 event.preventDefault();
 
+                if (!aboutOwnsPageInput()) {
+                    return;
+                }
+
                 if (delta < 0) {
-                    aboutVisible = false;
-                    siteStage.classList.remove('is-about-visible');
-                    updateScrollProgress(delta * 2);
+                    transitionFromAbout(delta * 2);
                 }
 
                 return;

@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Музей случайностей</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 <body>
     <main class="site-stage">
@@ -42,12 +50,10 @@
                 </div>
                 <button class="hero__btn button bottom-right-btn arrow-down-decorator">Смотреть коллекцию</button>
 
-                <!-- Горизонтальные линии -->
                 <div class="hero__line-horizontal hero__line-horizontal-top"></div>
                 <div class="hero__line-horizontal hero__line-horizontal-middle"></div>
                 <div class="hero__line-horizontal hero__line-horizontal-bottom"></div>
 
-                <!-- Вертикальные линии -->
                 <div class="hero__line-vertical hero__line-vertical-left"></div>
                 <div class="hero__line-vertical hero__line-vertical-middle"></div>
                 <div class="hero__line-vertical hero__line-vertical-right"></div>
@@ -83,7 +89,7 @@
                     <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
                 </header>
                 <h2 class="about__heading h2">Когда случайное становится значимым</h2>
-                <div class="about__rand-guard rand-guard">
+                <div class="about__rand-guard rand-guard rand-guard-non-hero">
                     <img src="./images/main/rand-guard.svg" alt="guardian of randomness" class="rand-guard__img">
                     <div class="rand-guard__descr text text-gray">Смотритель случайностей</div>
                 </div>
@@ -91,7 +97,6 @@
                 формы. Все то, что обычно остаётся на периферии, здесь становится предметом наблюдения.</div>
                 <div class="about__model model-viewer">
                     <div class="model-viewer__stage">
-                        <!-- TEMP: static placeholder until the Three.js model is connected. -->
                         <img src="./images/animation-frames/0150.webp" alt="Кристалл" class="model-viewer__placeholder">
                         <canvas class="model-viewer__canvas">
                             Ваш браузер не поддерживает Canvas.
@@ -101,8 +106,111 @@
                 <button class="about__btn button bottom-right-btn arrow-down-decorator">Далее</button>
             </div>
         </section>
+
+        <section class="collection">
+            <div class="collection__wrapper container">
+                <header class="header">
+                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION /
+                        2026
+                    </div>
+                    <nav class="header__nav">
+                        <a href="/about" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events" class="header__nav-item button-text">События</a>
+                        <a href="/store" class="header__nav-item button-text">Магазин</a>
+                    </nav>
+                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                </header>
+                <h2 class="collection__heading h2">Коллекция случайного</h2>
+                <div class="collection__cards">
+                    <div class="collection__card collection__card--001">
+                        <div class="collection__card__meta text text-gray">RND–001 / BROKEN IMAGE</div>
+                        <img src="./images/main/collection/RND–001.png" class="collection__card__image" alt="Разрушающееся пиксельное изображение">
+                        <div class="collection__card-divider"></div>
+                        <div class="collection__card__title">
+                            <div class="collection__card__title-text text">Битые изображения</div>
+                            <div class="collection__card__arrow text">→</div>
+                        </div>
+                    </div>
+                    <div class="collection__card collection__card--002">
+                        <div class="collection__card__meta text text-gray">RND–002 / Found Phrase</div>
+                        <img src="./images/main/collection/RND–002.png" class="collection__card__image"
+                            alt="Разрушающееся пиксельное изображение">
+                        <div class="collection__card-divider"></div>
+                        <div class="collection__card__title">
+                            <div class="collection__card__title-text text">Найденные фразы</div>
+                            <div class="collection__card__arrow text">→</div>
+                        </div>
+                    </div>
+                    <div class="collection__card collection__card--003">
+                        <div class="collection__card__meta text text-gray">RND–003 / Print Error</div>
+                        <img src="./images/main/collection/RND–003.png" class="collection__card__image"
+                            alt="Разрушающееся пиксельное изображение">
+                        <div class="collection__card-divider"></div>
+                        <div class="collection__card__title">
+                            <div class="collection__card__title-text text">Ошибки печати</div>
+                            <div class="collection__card__arrow text">→</div>
+                        </div>
+                    </div>
+                    <div class="collection__card collection__card--004">
+                        <div class="collection__card__meta text text-gray">RND–004 / Random Form</div>
+                        <img src="./images/main/collection/RND–004.png" class="collection__card__image"
+                            alt="Разрушающееся пиксельное изображение">
+                        <div class="collection__card-divider"></div>
+                        <div class="collection__card__title">
+                            <div class="collection__card__title-text text">Случайные формы</div>
+                            <div class="collection__card__arrow text">→</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collection__rand-guard rand-guard rand-guard-non-hero">
+                    <img src="./images/main/rand-guard.svg" alt="guardian of randomness" class="rand-guard__img">
+                    <div class="rand-guard__descr text text-gray">Смотритель случайностей</div>
+                </div>
+                <div class="collection__text bottom-left-text text">Музей собирает артефакты, которые появились без замысла, но сохранили след, форму и смысл.</div>
+                <button class="collection__btn button bottom-right-btn arrow-up-right-decorator">Смотреть коллекцию</button>
+            </div>
+        </section>
+
+        <!-- <section class="space">
+            <div class="space__wrapper container">
+                <header class="header">
+                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION /
+                        2026
+                    </div>
+                    <nav class="header__nav">
+                        <a href="/about" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events" class="header__nav-item button-text">События</a>
+                        <a href="/store" class="header__nav-item button-text">Магазин</a>
+                    </nav>
+                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                </header>
+                <h2 class="space__heading h2">Пространство музея</h2>
+                <div class="space__rand-guard rand-guard rand-guard-non-hero">
+                    <img src="./images/main/rand-guard.svg" alt="guardian of randomness" class="rand-guard__img">
+                    <div class="rand-guard__descr text text-gray">Смотритель случайностей</div>
+                </div>
+                <div class="space__gallery">
+                    <img src="./images/main/space/space-1.jpg" alt="space" class="space__img">
+                    <img src="./images/main/space/space-2.jpg" alt="space" class="space__img">
+                    <img src="./images/main/space/space-3.jpg" alt="space" class="space__img">
+                    <img src="./images/main/space/space-4.jpg" alt="space" class="space__img">
+                    <img src="./images/main/space/space-5.jpg" alt="space" class="space__img">
+                    <img src="./images/main/space/space-6.jpg" alt="space" class="space__img">
+                    <img src="./images/main/space/space-7.jpg" alt="space" class="space__img">
+                </div>
+                <div class="space__text bottom-left-text text">Музей работает как маршрут. Он ведёт посетителя через состояния: ошибка, сбой, совпадение, память. В конце случайное
+                начинает читаться иначе.</div>
+                <button class="space__btn button bottom-right-btn arrow-down-decorator">Далее</button>
+            </div>
+        </section> -->
     </main>
     <script src="./scripts/meteor-transition.js" defer></script>
     <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/section-transitions.js" defer></script>
+    <script type="module" src="./scripts/meteor-model.js"></script>
 </body>
 </html>
