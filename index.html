@@ -19,12 +19,12 @@
                         <a href="/events" class="header__nav-item button-text">События</a>
                         <a href="/store" class="header__nav-item button-text">Магазин</a>
                     </nav>
-                    <button class="header__btn button">Отправить находку</button>
+                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
                 </header>
                 <img src="./images/main/hero-heading.svg" alt="МУЗЕЙ СЛУЧАЙНОСТЕЙ" class="hero__heading">
-                <div class="hero__crystal crystal">
-                    <img src="./images/animation-frames/0001.webp" alt="crystal" class="crystal__thumbnail">
-                    <canvas class="crystal__canvas"></canvas>
+                <div class="hero__meteor meteor">
+                    <img src="./images/animation-frames/0001.webp" alt="meteor" class="meteor__thumbnail">
+                    <canvas class="meteor__canvas"></canvas>
                 </div>
                 <div class="hero__rand-guard rand-guard">
                     <img src="./images/main/rand-guard.svg" alt="guardian of randomness" class="rand-guard__img">
@@ -40,7 +40,7 @@
                     <div class="hero__scroll-text text text-gray">Scroll</div>
                     <div class="hero__scroll-arrow text text-gray">↓</div>
                 </div>
-                <button class="hero__btn button">Смотреть коллекцию</button>
+                <button class="hero__btn button bottom-right-btn arrow-down-decorator">Смотреть коллекцию</button>
 
                 <!-- Горизонтальные линии -->
                 <div class="hero__line-horizontal hero__line-horizontal-top"></div>
@@ -54,21 +54,55 @@
             </div>
         </section>
 
-        <section class="screen crystal-transition">
-            <div class="crystal-transition__scroll scroll">
-                <div class="crystal-transition__scroll-text text text-gray">Scroll</div>
-                <div class="crystal-transition__scroll-arrow text text-gray">↓</div>
+        <section class="screen meteor-transition">
+            <div class="meteor-transition__scroll scroll">
+                <div class="meteor-transition__scroll-text text text-gray">Scroll</div>
+                <div class="meteor-transition__scroll-arrow text text-gray">↓</div>
             </div>
         </section>
 
-        <div class="crystal-layer">
-            <div class="crystal-holder">
-                <img class="crystal-poster" src="./images/animation-frames/0001.webp" alt="crystal">
-                <canvas class="crystal-canvas" width="1200" height="1200"></canvas>
+        <div class="meteor-layer">
+            <div class="meteor-holder">
+                <img class="meteor-poster" src="./images/animation-frames/0001.webp" alt="meteor">
+                <canvas class="meteor-canvas" width="1200" height="1200"></canvas>
             </div>
         </div>
+
+        <section class="about">
+            <div class="about__wrapper container">
+                <header class="header">
+                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION / 2026
+                    </div>
+                    <nav class="header__nav">
+                        <a href="/about" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events" class="header__nav-item button-text">События</a>
+                        <a href="/store" class="header__nav-item button-text">Магазин</a>
+                    </nav>
+                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                </header>
+                <h2 class="about__heading h2">Когда случайное становится значимым</h2>
+                <div class="about__rand-guard rand-guard">
+                    <img src="./images/main/rand-guard.svg" alt="guardian of randomness" class="rand-guard__img">
+                    <div class="rand-guard__descr text text-gray">Смотритель случайностей</div>
+                </div>
+                <div class="about__text bottom-left-text text">Мы собираем незапланированные артефакты: ошибки, глитчи, совпадения, ложные воспоминания, искажения и повторяющиеся
+                формы. Все то, что обычно остаётся на периферии, здесь становится предметом наблюдения.</div>
+                <div class="about__model model-viewer">
+                    <div class="model-viewer__stage">
+                        <!-- TEMP: static placeholder until the Three.js model is connected. -->
+                        <img src="./images/animation-frames/0150.webp" alt="Кристалл" class="model-viewer__placeholder">
+                        <canvas class="model-viewer__canvas">
+                            Ваш браузер не поддерживает Canvas.
+                        </canvas>
+                    </div>
+                </div>
+                <button class="about__btn button bottom-right-btn arrow-down-decorator">Далее</button>
+            </div>
+        </section>
     </main>
-    <script src="./scripts/crystal-sequence.js" defer></script>
+    <script src="./scripts/meteor-transition.js" defer></script>
     <script src="./scripts/script.js" defer></script>
 </body>
 </html>

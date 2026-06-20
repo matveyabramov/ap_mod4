@@ -1,28 +1,28 @@
 (function () {
     'use strict';
 
-    function initializeCrystalTransition() {
+    function initializeMeteorTransition() {
         const siteStage = document.querySelector('.site-stage');
-        const heroCrystal = document.querySelector('.crystal__thumbnail');
-        const crystalLayer = document.querySelector('.crystal-layer');
-        const crystalHolder = document.querySelector('.crystal-holder');
-        const crystalCanvas = document.querySelector('.crystal-canvas');
+        const heroMeteor = document.querySelector('.meteor__thumbnail');
+        const meteorLayer = document.querySelector('.meteor-layer');
+        const meteorHolder = document.querySelector('.meteor-holder');
+        const meteorCanvas = document.querySelector('.meteor-canvas');
         const heroButton = document.querySelector('.hero__btn');
 
         if (
             !siteStage ||
-            !heroCrystal ||
-            !crystalLayer ||
-            !crystalHolder ||
-            !crystalCanvas ||
-            typeof window.CrystalSequence !== 'function'
+            !heroMeteor ||
+            !meteorLayer ||
+            !meteorHolder ||
+            !meteorCanvas ||
+            typeof window.MeteorSequence !== 'function'
         ) {
             return;
         }
 
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        const sequence = new window.CrystalSequence({
-            canvas: crystalCanvas,
+        const sequence = new window.MeteorSequence({
+            canvas: meteorCanvas,
             frameCount: 150,
         });
         let transitionStarted = false;
@@ -30,7 +30,7 @@
         let scrollProgress = 0;
         let upwardExitDistance = 0;
         let touchStartY = null;
-        let crystalTransitionAnimation = null;
+        let meteorTransitionAnimation = null;
         let transitionVersion = 0;
         let returningToHero = false;
         let cachedHeroBounds = null;
@@ -38,6 +38,7 @@
         let reverseIntentDistance = 0;
         let sequenceInputLocked = false;
         let sequenceInputUnlockAt = 0;
+        let aboutVisible = false;
 
         const sequenceReady = sequence.load().then(
             () => true,
@@ -92,13 +93,13 @@
             lockSequenceInput();
             const currentTransitionVersion = ++transitionVersion;
             sequence.jumpToProgress(0);
-            cachedHeroBounds = heroCrystal.getBoundingClientRect();
-            const targetBounds = crystalHolder.getBoundingClientRect();
+            cachedHeroBounds = heroMeteor.getBoundingClientRect();
+            const targetBounds = meteorHolder.getBoundingClientRect();
             cachedHeroTransform = getHeroTransform(cachedHeroBounds, targetBounds);
-            siteStage.classList.add('is-crystal-transition');
+            siteStage.classList.add('is-meteor-transition');
 
             if (!reducedMotion.matches && cachedHeroBounds.width && targetBounds.width) {
-                const expansion = crystalHolder.animate(
+                const expansion = meteorHolder.animate(
                     [
                         { transform: cachedHeroTransform },
                         { transform: 'translate(0, 0) scale(1, 1)' },
@@ -109,13 +110,13 @@
                         fill: 'both',
                     },
                 );
-                crystalTransitionAnimation = expansion;
+                meteorTransitionAnimation = expansion;
 
                 await expansion.finished.catch(() => {});
                 expansion.cancel();
 
-                if (crystalTransitionAnimation === expansion) {
-                    crystalTransitionAnimation = null;
+                if (meteorTransitionAnimation === expansion) {
+                    meteorTransitionAnimation = null;
                 }
             }
 
@@ -134,7 +135,7 @@
             }
 
             sequence.resize();
-            crystalLayer.classList.add('is-sequence-ready');
+            meteorLayer.classList.add('is-sequence-ready');
             transitionReady = true;
             scrollProgress = 0;
             sequence.jumpToProgress(0);
@@ -142,6 +143,13 @@
         }
 
         function updateScrollProgress(delta) {
+            if (scrollProgress === 1 && delta > 0) {
+                // TEMP: simple section switch after meteor sequence. Replace with smooth transition later.
+                aboutVisible = true;
+                siteStage.classList.add('is-about-visible');
+                return;
+            }
+
             if (scrollProgress === 1 && delta < 0) {
                 reverseIntentDistance += Math.abs(delta);
 
@@ -193,7 +201,7 @@
             sequence.stopSmoothing();
 
             if (!reducedMotion.matches && cachedHeroTransform) {
-                const collapse = crystalHolder.animate(
+                const collapse = meteorHolder.animate(
                     [
                         { transform: 'translate(0, 0) scale(1, 1)' },
                         { transform: cachedHeroTransform },
@@ -204,15 +212,15 @@
                         fill: 'both',
                     },
                 );
-                crystalTransitionAnimation = collapse;
+                meteorTransitionAnimation = collapse;
 
                 await collapse.finished.catch(() => {});
             }
 
-            siteStage.classList.remove('is-crystal-transition');
+            siteStage.classList.remove('is-meteor-transition');
             await new Promise((resolve) => requestAnimationFrame(resolve));
-            crystalTransitionAnimation?.cancel();
-            crystalTransitionAnimation = null;
+            meteorTransitionAnimation?.cancel();
+            meteorTransitionAnimation = null;
             sequence.jumpToProgress(0);
             cachedHeroBounds = null;
             cachedHeroTransform = null;
@@ -244,6 +252,18 @@
 
             if (returningToHero) {
                 event.preventDefault();
+                return;
+            }
+
+            if (aboutVisible) {
+                event.preventDefault();
+
+                if (delta < -2) {
+                    aboutVisible = false;
+                    siteStage.classList.remove('is-about-visible');
+                    updateScrollProgress(delta);
+                }
+
                 return;
             }
 
@@ -292,6 +312,18 @@
                 return;
             }
 
+            if (aboutVisible) {
+                event.preventDefault();
+
+                if (delta < 0) {
+                    aboutVisible = false;
+                    siteStage.classList.remove('is-about-visible');
+                    updateScrollProgress(delta * 2);
+                }
+
+                return;
+            }
+
             if (transitionStarted && !canUseSequenceInput()) {
                 event.preventDefault();
                 return;
@@ -322,12 +354,12 @@
         window.addEventListener('resize', () => sequence.resize(), { passive: true });
         heroButton?.addEventListener('click', startTransition);
 
-        window.crystalSequence = sequence;
+        window.meteorSequence = sequence;
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeCrystalTransition, { once: true });
+        document.addEventListener('DOMContentLoaded', initializeMeteorTransition, { once: true });
     } else {
-        initializeCrystalTransition();
+        initializeMeteorTransition();
     }
 })();

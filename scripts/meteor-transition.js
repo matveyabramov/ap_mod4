@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    class CrystalSequence {
+    class MeteorSequence {
         constructor({
             canvas,
             frameCount = 150,
@@ -10,7 +10,7 @@
                 `./images/animation-frames/${String(frameNumber).padStart(4, '0')}.webp`,
         }) {
             if (!(canvas instanceof HTMLCanvasElement)) {
-                throw new TypeError('CrystalSequence requires a canvas element.');
+                throw new TypeError('MeteorSequence requires a canvas element.');
             }
 
             this.canvas = canvas;
@@ -59,7 +59,7 @@
                 const image = new Image();
                 image.decoding = 'async';
                 image.onload = () => resolve(image);
-                image.onerror = () => reject(new Error(`Unable to load crystal frame: ${source}`));
+                image.onerror = () => reject(new Error(`Unable to load meteor frame: ${source}`));
                 image.src = source;
             });
         }
@@ -143,5 +143,5 @@
         }
     }
 
-    window.CrystalSequence = CrystalSequence;
+    window.MeteorSequence = MeteorSequence;
 })();
