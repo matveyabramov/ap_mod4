@@ -35,8 +35,8 @@ const MODEL_PATH = './models/meteor.glb';
 // TEMP: use the camera and untouched scene exported from Blender.
 const USE_GLB_CAMERA_TEST = true;
 
-function initializeMeteorModel() {
-    const stage = document.querySelector('.model-viewer__stage');
+function initializeMeteorModel(viewer) {
+    const stage = viewer.querySelector('.model-viewer__stage');
     const canvas = stage?.querySelector('.model-viewer__canvas');
     const placeholder = stage?.querySelector('.model-viewer__placeholder');
 
@@ -186,4 +186,4 @@ function initializeMeteorModel() {
     );
 }
 
-initializeMeteorModel();
+document.querySelectorAll('.model-viewer').forEach(initializeMeteorModel);

@@ -1,10 +1,20 @@
 (function () {
     'use strict';
 
+    // TEMP DEV MODE: set to a section selector to work on it in isolation.
+    // Set DEV_ACTIVE_SECTION_SELECTOR to null to restore normal transitions.
+    const SECTION_TRANSITIONS_ENABLED = true;
+    // const DEV_ACTIVE_SECTION_SELECTOR = '.footer';
+    const DEV_ACTIVE_SECTION_SELECTOR = null;
+
     const PAGE_SECTIONS = [
         '.about',
         '.collection',
-        '.space'
+        '.space',
+        '.events',
+        '.form',
+        '.souvenirs',
+        '.footer'
     ];
 
     const PAGE_TRANSITION_DURATION = 800;
@@ -247,6 +257,22 @@
     }
 
     function initializeSectionTransitions() {
+        if (!SECTION_TRANSITIONS_ENABLED) {
+            return;
+        }
+
+        if (DEV_ACTIVE_SECTION_SELECTOR) {
+            const devSection = document.querySelector(DEV_ACTIVE_SECTION_SELECTOR);
+
+            if (!devSection) {
+                console.warn(`Dev section not found: ${DEV_ACTIVE_SECTION_SELECTOR}`);
+                return;
+            }
+
+            devSection.classList.add('page-section', 'is-active');
+            return;
+        }
+
         sections = getSections();
 
         if (!sections.length) {
