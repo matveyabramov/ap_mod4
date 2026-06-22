@@ -5,6 +5,7 @@
     const ABOUT_TRANSITION_EASING = 'cubic-bezier(0.65, 0, 0.35, 1)';
     const ABOUT_CROSSFADE_START = 0.62;
     const ABOUT_TARGET_SELECTOR = '.model-viewer__stage';
+    const ADAPTIVE_SEQUENCE_SENSITIVITY = 1.5;
 
     function initializeMeteorTransition() {
         const siteStage = document.querySelector('.site-stage');
@@ -30,6 +31,7 @@
         }
 
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const adaptiveViewport = window.matchMedia('(max-width: 1279px)');
         const sequence = new window.MeteorSequence({
             canvas: meteorCanvas,
             frameCount: 150,
@@ -341,7 +343,11 @@
             }
 
             const scrollDistance = Math.max(window.innerHeight * 2, 1200);
-            scrollProgress = Math.max(0, Math.min(scrollProgress + delta / scrollDistance, 1));
+            const sensitivity = adaptiveViewport.matches ? ADAPTIVE_SEQUENCE_SENSITIVITY : 1;
+            scrollProgress = Math.max(
+                0,
+                Math.min(scrollProgress + (delta * sensitivity) / scrollDistance, 1),
+            );
 
             if (transitionReady) {
                 sequence.setTargetProgress(scrollProgress);

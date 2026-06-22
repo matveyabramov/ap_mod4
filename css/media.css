@@ -915,6 +915,15 @@
         border: 0;
     }
 
+    .form__field {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .form__field::placeholder {
+        font-size: 16px;
+    }
+
     @media (prefers-reduced-motion: reduce) {
 
         .mobile-menu__overlay,
@@ -992,7 +1001,7 @@
     }
 
     .h2 {
-        font-size: clamp(35px, 7vw, 54px);
+        font-size: 35px;
         line-height: 1;
     }
 
@@ -1194,13 +1203,7 @@
     }
 
     .events__card,
-    .souvenirs__card,
-    .events__card--001,
-    .events__card--002,
-    .events__card--003,
-    .souvenirs__card--001,
-    .souvenirs__card--002,
-    .souvenirs__card--003 {
+    .souvenirs__card {
         flex: 0 0 var(--mobile-card-width);
         width: var(--mobile-card-width);
         height: var(--mobile-card-height);
@@ -1320,5 +1323,14 @@
 
     .mobile-menu__cta {
         height: var(--mobile-cta-height);
+    }
+
+    .form__field {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .form__field::placeholder {
+        font-size: 16px;
     }
 }
