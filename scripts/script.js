@@ -6,6 +6,11 @@
     const ABOUT_CROSSFADE_START = 0.62;
     const ABOUT_TARGET_SELECTOR = '.model-viewer__stage';
     const ADAPTIVE_SEQUENCE_SENSITIVITY = 1.5;
+    const TOUCH_PROGRESS_MULTIPLIER = 2;
+    const TOUCH_INERTIA_FRICTION = 0.92;
+    const TOUCH_INERTIA_MIN_VELOCITY = 0.02;
+    const TOUCH_INERTIA_MAX_VELOCITY = 0.45;
+    const TOUCH_INERTIA_MAX_IDLE = 80;
 
     function initializeMeteorTransition() {
         const siteStage = document.querySelector('.site-stage');
@@ -41,6 +46,10 @@
         let scrollProgress = 0;
         let upwardExitDistance = 0;
         let touchStartY = null;
+        let touchLastTime = 0;
+        let touchVelocity = 0;
+        let touchSequenceMoved = false;
+        let touchInertiaFrame = null;
         let meteorTransitionAnimation = null;
         let transitionVersion = 0;
         let returningToHero = false;
@@ -426,7 +435,78 @@
             return event.deltaY;
         }
 
+        function stopTouchInertia() {
+            if (touchInertiaFrame !== null) {
+                cancelAnimationFrame(touchInertiaFrame);
+                touchInertiaFrame = null;
+            }
+
+            touchVelocity = 0;
+        }
+
+        function startTouchInertia() {
+            if (
+                !adaptiveViewport.matches ||
+                reducedMotion.matches ||
+                !touchSequenceMoved ||
+                performance.now() - touchLastTime > TOUCH_INERTIA_MAX_IDLE ||
+                !transitionStarted ||
+                !transitionReady ||
+                returningToHero ||
+                isTransitioningToAbout ||
+                aboutVisible
+            ) {
+                return;
+            }
+
+            let velocity = Math.max(
+                -TOUCH_INERTIA_MAX_VELOCITY,
+                Math.min(touchVelocity, TOUCH_INERTIA_MAX_VELOCITY),
+            );
+
+            if (Math.abs(velocity) < TOUCH_INERTIA_MIN_VELOCITY) {
+                return;
+            }
+
+            stopTouchInertia();
+            let previousTime = performance.now();
+
+            function step(currentTime) {
+                const elapsed = Math.min(currentTime - previousTime, 32);
+                const frameScale = elapsed / (1000 / 60);
+                previousTime = currentTime;
+                velocity *= Math.pow(TOUCH_INERTIA_FRICTION, frameScale);
+
+                if (
+                    !adaptiveViewport.matches ||
+                    reducedMotion.matches ||
+                    Math.abs(velocity) < TOUCH_INERTIA_MIN_VELOCITY ||
+                    !transitionStarted ||
+                    !transitionReady ||
+                    returningToHero ||
+                    isTransitioningToAbout ||
+                    aboutVisible
+                ) {
+                    touchInertiaFrame = null;
+                    return;
+                }
+
+                updateScrollProgress(velocity * elapsed * TOUCH_PROGRESS_MULTIPLIER);
+
+                if (scrollProgress === 1 && velocity > 0) {
+                    updateScrollProgress(velocity);
+                    touchInertiaFrame = null;
+                    return;
+                }
+
+                touchInertiaFrame = requestAnimationFrame(step);
+            }
+
+            touchInertiaFrame = requestAnimationFrame(step);
+        }
+
         function handleWheel(event) {
+            stopTouchInertia();
             const delta = normalizeWheelDelta(event);
 
             if (transitionStarted) {
@@ -481,12 +561,16 @@
         }
 
         function handleTouchStart(event) {
+            stopTouchInertia();
+            touchSequenceMoved = false;
+
             if (event.target instanceof Element && event.target.closest('.model-viewer__stage')) {
                 touchStartY = null;
                 return;
             }
 
             touchStartY = event.changedTouches[0].clientY;
+            touchLastTime = performance.now();
         }
 
         function handleTouchMove(event) {
@@ -542,17 +626,32 @@
                 return;
             }
 
-            updateScrollProgress(delta * 2);
+            const currentTime = performance.now();
+            const elapsed = Math.max(currentTime - touchLastTime, 1);
+            const sampledVelocity = delta / elapsed;
+            touchVelocity = touchVelocity * 0.6 + sampledVelocity * 0.4;
+            touchLastTime = currentTime;
+            touchSequenceMoved = true;
+            updateScrollProgress(delta * TOUCH_PROGRESS_MULTIPLIER);
         }
 
         function handleTouchEnd() {
+            startTouchInertia();
             touchStartY = null;
+            touchSequenceMoved = false;
+        }
+
+        function handleTouchCancel() {
+            stopTouchInertia();
+            touchStartY = null;
+            touchSequenceMoved = false;
         }
 
         window.addEventListener('wheel', handleWheel, { passive: false });
         window.addEventListener('touchstart', handleTouchStart, { passive: true });
         window.addEventListener('touchmove', handleTouchMove, { passive: false });
         window.addEventListener('touchend', handleTouchEnd, { passive: true });
+        window.addEventListener('touchcancel', handleTouchCancel, { passive: true });
         window.addEventListener('resize', () => sequence.resize(), { passive: true });
         heroButton?.addEventListener('click', startTransition);
 
