@@ -895,6 +895,9 @@ body {
 
 .footer-text {
     font-size: 30px;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .footer__model {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>События — Музей случайностей</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/pages/events.css">
+</head>
+<body data-page="events">
+    <header class="header">
+        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
+        <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION / 2026</div>
+        <nav class="header__nav" aria-label="Основная навигация">
+            <a href="./about.html" class="header__nav-item button-text">О&nbsp;музее</a>
+            <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
+            <a href="./events.html" class="header__nav-item button-text" aria-current="page">События</a>
+            <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+        </nav>
+        <button class="header__btn button arrow-up-right-decorator" type="button">Отправить находку</button>
+        <button class="header__burger" type="button" aria-label="Открыть меню"
+            aria-expanded="false" aria-controls="mobile-menu" hidden>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main class="page page--events">
+        <h1 class="page__title h2">События</h1>
+    </main>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true" hidden>
+        <button class="mobile-menu__overlay" type="button" aria-label="Закрыть меню"></button>
+        <aside class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Навигация по сайту">
+            <button class="mobile-menu__close" type="button" aria-label="Закрыть меню">
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="mobile-menu__nav" aria-label="Мобильная навигация">
+                <a href="./about.html" class="mobile-menu__link text">О музее</a>
+                <a href="./collection.html" class="mobile-menu__link text">Коллекция</a>
+                <a href="./events.html" class="mobile-menu__link text" aria-current="page">События</a>
+                <a href="./merch.html" class="mobile-menu__link text">Магазин</a>
+            </nav>
+            <button class="mobile-menu__cta button arrow-up-right-decorator" type="button">Отправить находку</button>
+        </aside>
+    </div>
+
+    <script src="./scripts/horizontal-scroll.js" defer></script>
+    <script src="./scripts/mobile-menu.js" defer></script>
+    <script src="./scripts/pages/events.js" defer></script>
+</body>
+</html>
