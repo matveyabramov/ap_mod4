@@ -31,7 +31,7 @@ const RIM_LIGHT_POSITION = { x: 1, y: 3, z: -5 };
 
 const RENDERER_EXPOSURE = 0.7;
 const CONTROLS_DAMPING = 0.07;
-const MODEL_PATH = '/models/meteor.glb';
+const MODEL_PATH = '/ap_mod4/models/meteor.glb';
 // TEMP: use the camera and untouched scene exported from Blender.
 const USE_GLB_CAMERA_TEST = true;
 
