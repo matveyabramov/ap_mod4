@@ -318,8 +318,7 @@ body.is-submission-modal-open {
     }
 }
 
-/* Если высота экрана совсем маленькая, контент лучше начинать сверху,
-   чтобы он нормально скроллился внутри попапа, а не обрезался. */
+
 @media (max-height: 720px) {
     .submission-modal__panel {
         align-content: start;

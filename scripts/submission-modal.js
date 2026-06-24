@@ -7,6 +7,17 @@
 
     window.__submissionModalInitialized = true;
 
+    document.addEventListener('submit', (event) => {
+        const form = event.target;
+
+        if (!(form instanceof HTMLFormElement)) {
+            return;
+        }
+
+        event.preventDefault();
+        window.location.href = '/404.html';
+    });
+
     function initializeSubmissionModal() {
         const modal = document.getElementById('submission-modal');
         const overlay = modal?.querySelector('.submission-modal__overlay');

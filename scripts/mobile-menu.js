@@ -8,7 +8,6 @@
     const closeButton = menu?.querySelector('.mobile-menu__close');
     const menuLinks = menu?.querySelectorAll('.mobile-menu__link, .mobile-menu__cta');
     const triggers = document.querySelectorAll('.header__burger');
-    const mobileOnlyElements = document.querySelectorAll('[data-mobile-only]');
 
     if (!menu || !panel || !overlay || !closeButton || !triggers.length) {
         return;
@@ -54,9 +53,6 @@
 
         triggers.forEach((button) => {
             button.hidden = !isMobile;
-        });
-        mobileOnlyElements.forEach((element) => {
-            element.hidden = !isMobile;
         });
 
         if (isMobile) {

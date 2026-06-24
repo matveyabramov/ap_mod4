@@ -169,17 +169,13 @@ body[data-page="about"] .page-section {
 }
 
 .about-randomness__media--small {
-    /* grid-column: 4 / 6;
-    grid-row: 7 / 10;
-    margin-left: 10px; */
+    
     grid-column: 1;
     grid-row: 1;
 }
 
 .about-randomness__media--large {
-    /* grid-column: 6 / 10;
-    grid-row: 7 / 13;
-    margin-left: 4px; */
+    
     grid-column: 2 / 4;
     grid-row: 1 / 3;
 }

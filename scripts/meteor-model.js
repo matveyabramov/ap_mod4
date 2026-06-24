@@ -2,37 +2,37 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-// Model framing: scale is a multiplier; position and rotation use scene units/radians.
+
 const MODEL_SCALE = 1.08;
 const MODEL_POSITION = { x: 0, y: -0.08, z: 0 };
 const MODEL_ROTATION = { x: -0.12, y: 0.45, z: -0.06 };
 const MODEL_TARGET_SIZE = 2.8;
 
-// Camera framing: increase y for a more top-down view; reduce FOV to zoom in.
+
 const CAMERA_POSITION = { x: 3.2, y: 2.4, z: 4.8 };
 const CAMERA_TARGET = { x: 0, y: 0, z: 0 };
 const CAMERA_FOV = 32;
 
-// Ambient and hemisphere lights keep shadowed surfaces softly visible.
+
 const AMBIENT_LIGHT_INTENSITY = 0.45;
 const HEMISPHERE_LIGHT_INTENSITY = 1.4;
-// Key light defines the upper/front form.
+
 const KEY_LIGHT_INTENSITY = 3.2;
 const KEY_LIGHT_POSITION = { x: 3, y: 5, z: 5 };
-// Lower/front fill opens the underside without flattening the model.
+
 const FILL_LIGHT_INTENSITY = 2.2;
 const FILL_LIGHT_POSITION = { x: -3, y: -2.5, z: 4 };
-// Very soft bottom fill to keep the underside readable.
+
 const BOTTOM_FILL_LIGHT_INTENSITY = 0.35;
 const BOTTOM_FILL_LIGHT_POSITION = { x: 0, y: -3, z: 3 };
-// Rear rim separates the orbit rings from the black background.
+
 const RIM_LIGHT_INTENSITY = 0.8;
 const RIM_LIGHT_POSITION = { x: 1, y: 3, z: -5 };
 
 const RENDERER_EXPOSURE = 0.7;
 const CONTROLS_DAMPING = 0.07;
 const MODEL_PATH = '/ap_mod4/models/meteor.glb';
-// TEMP: use the camera and untouched scene exported from Blender.
+
 const USE_GLB_CAMERA_TEST = true;
 
 function initializeMeteorModel(viewer) {
@@ -173,7 +173,7 @@ function initializeMeteorModel(viewer) {
 
             resize();
 
-            // Keep the static image visible until the first successful model render.
+            
             if (placeholder) {
                 placeholder.hidden = true;
                 placeholder.style.display = 'none';
