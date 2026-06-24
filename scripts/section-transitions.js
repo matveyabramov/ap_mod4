@@ -55,6 +55,15 @@
             autoActivate: true,
             anchorNavigation: false,
         },
+        merch: {
+            sections: [
+                '.merch-hero',
+                '.footer',
+            ],
+            initialSection: '.merch-hero',
+            autoActivate: true,
+            anchorNavigation: false,
+        },
     };
 
     const PAGE_TRANSITION_DURATION = 800;

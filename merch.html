@@ -1,32 +1,214 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин — Музей случайностей</title>
+    <title>Мерч — Музей случайностей</title>
+    <link rel="icon" href="./images/logo.jpg">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/pages/merch.css">
 </head>
-<body data-page="merch">
-    <header class="header">
-        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
-        <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION / 2026</div>
-        <nav class="header__nav" aria-label="Основная навигация">
-            <a href="./about.html" class="header__nav-item button-text">О&nbsp;музее</a>
-            <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
-            <a href="./events.html" class="header__nav-item button-text">События</a>
-            <a href="./merch.html" class="header__nav-item button-text" aria-current="page">Магазин</a>
-        </nav>
-        <button class="header__btn button arrow-up-right-decorator" type="button">Отправить находку</button>
-        <button class="header__burger" type="button" aria-label="Открыть меню"
-            aria-expanded="false" aria-controls="mobile-menu" hidden>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
 
-    <main class="page page--merch">
-        <h1 class="page__title h2">Магазин</h1>
+<body data-page="merch">
+    <main class="merch-page">
+        <section class="merch-hero">
+            <div class="merch-hero__wrapper container">
+                <header class="header">
+                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL
+                        merch / 2026
+                    </div>
+                    <nav class="header__nav" aria-label="Основная навигация">
+                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
+                        <a href="./collection.html" class="header__nav-item button-text"
+                            aria-current="page">Коллекция</a>
+                        <a href="./events.html" class="header__nav-item button-text">События</a>
+                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                    </nav>
+                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false"
+                        aria-controls="mobile-menu" hidden>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </header>
+                <h1 class="merch-hero__title h1">Мерч музея случайностей</h1>
+                <div class="merch-tabs" role="tablist" aria-label="Категории коллекции">
+                    <button class="merch-tabs__button is-active" id="merch-tab-broken-images" type="button"
+                        role="tab" aria-selected="true" aria-controls="merch-panel-broken-images" tabindex="0"
+                        data-merch-tab="broken-images">
+                        Одежда
+                    </button>
+                    <button class="merch-tabs__button" id="merch-tab-print-errors" type="button" role="tab"
+                        aria-selected="false" aria-controls="merch-panel-print-errors" tabindex="-1"
+                        data-merch-tab="print-errors">
+                        Сувениры
+                    </button>
+                    <button class="merch-tabs__button" id="merch-tab-random-forms" type="button" role="tab"
+                        aria-selected="false" aria-controls="merch-panel-random-forms" tabindex="-1"
+                        data-merch-tab="random-forms">
+                        Плакаты
+                    </button>
+                </div>
+
+                <div class="merch-panels">
+                    <section class="merch-panel is-active" id="merch-panel-broken-images" role="tabpanel"
+                        aria-labelledby="merch-tab-broken-images" data-merch-panel="broken-images">
+                        <div class="merch-cards">
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/clothes/item1.png"
+                                        alt="Битое изображение, артефакт 001">
+                                </div>
+                                <h2 class="merch-card__title">Футболка</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/clothes/item2.png"
+                                        alt="Битое изображение, артефакт 002">
+                                </div>
+                                <h2 class="merch-card__title">Худи</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/clothes/item3.png"
+                                        alt="Битое изображение, артефакт 003">
+                                </div>
+                                <h2 class="merch-card__title">Джинсы</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/clothes/item4.png"
+                                        alt="Битое изображение, артефакт 004">
+                                </div>
+                                <h2 class="merch-card__title">Шоппер</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/clothes/item5.png"
+                                        alt="Битое изображение, артефакт 005">
+                                </div>
+                                <h2 class="merch-card__title">Кепка</h2>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="merch-panel" id="merch-panel-print-errors" role="tabpanel"
+                        aria-labelledby="merch-tab-print-errors" data-merch-panel="print-errors" hidden>
+                        <div class="merch-cards">
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/souvenirs/item1.png"
+                                        alt="Битое изображение, артефакт 001">
+                                </div>
+                                <h2 class="merch-card__title">Блокнот</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/souvenirs/item2.png"
+                                        alt="Битое изображение, артефакт 002">
+                                </div>
+                                <h2 class="merch-card__title">Фотоаппарат</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/souvenirs/item3.png"
+                                        alt="Битое изображение, артефакт 003">
+                                </div>
+                                <h2 class="merch-card__title">Стикеры</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/souvenirs/item4.png"
+                                        alt="Битое изображение, артефакт 004">
+                                </div>
+                                <h2 class="merch-card__title">Брелок</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/souvenirs/item5.png"
+                                        alt="Битое изображение, артефакт 005">
+                                </div>
+                                <h2 class="merch-card__title">Кружка</h2>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="merch-panel" id="merch-panel-random-forms" role="tabpanel"
+                        aria-labelledby="merch-tab-random-forms" data-merch-panel="random-forms" hidden>
+                        <div class="merch-cards">
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/posters/item1.png"
+                                        alt="Битое изображение, артефакт 001">
+                                </div>
+                                <h2 class="merch-card__title">Тропа утерянных вещей</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/posters/item2.png"
+                                        alt="Битое изображение, артефакт 002">
+                                </div>
+                                <h2 class="merch-card__title">Собери случайность</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/posters/item3.png"
+                                        alt="Битое изображение, артефакт 003">
+                                </div>
+                                <h2 class="merch-card__title">Случайность</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/posters/item4.png"
+                                        alt="Битое изображение, артефакт 004">
+                                </div>
+                                <h2 class="merch-card__title">Прикоснись к случайности</h2>
+                            </div>
+                            <div class="merch-card">
+                                <div class="merch-card__image-wrapper">
+                                    <img class="merch-card__image"
+                                        src="./images/merch-page/posters/item5.png"
+                                        alt="Битое изображение, артефакт 005">
+                                </div>
+                                <h2 class="merch-card__title">Комната забытых записей</h2>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer__container container">
+                <h2 class="footer__heading h2">Музей случайностей <br> Цифровой архив</h2>
+                <div class="footer__contacts">
+                    <div class="footer__group text footer-text">БПД311</div>
+                    <div class="footer__author text footer-text">Абрамов Матвей</div>
+                </div>
+                <div class="footer__model model-viewer">
+                    <div class="model-viewer__stage">
+                        <img src="./images/animation-frames/0150.webp" alt="Кристалл" class="model-viewer__placeholder">
+                        <canvas class="model-viewer__canvas">
+                            Ваш браузер не поддерживает Canvas.
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true" hidden>
@@ -38,16 +220,27 @@
             </button>
             <nav class="mobile-menu__nav" aria-label="Мобильная навигация">
                 <a href="./about.html" class="mobile-menu__link text">О музее</a>
-                <a href="./collection.html" class="mobile-menu__link text">Коллекция</a>
+                <a href="./collection.html" class="mobile-menu__link text" aria-current="page">Коллекция</a>
                 <a href="./events.html" class="mobile-menu__link text">События</a>
-                <a href="./merch.html" class="mobile-menu__link text" aria-current="page">Магазин</a>
+                <a href="./merch.html" class="mobile-menu__link text">Магазин</a>
             </nav>
             <button class="mobile-menu__cta button arrow-up-right-decorator" type="button">Отправить находку</button>
         </aside>
     </div>
 
     <script src="./scripts/horizontal-scroll.js" defer></script>
+    <script src="./scripts/section-transitions.js" defer></script>
     <script src="./scripts/mobile-menu.js" defer></script>
     <script src="./scripts/pages/merch.js" defer></script>
+    <script type="importmap">
+                    {
+                        "imports": {
+                            "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
+                            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+                        }
+                    }
+    </script>
+    <script type="module" src="./scripts/meteor-model.js"></script>
 </body>
+
 </html>

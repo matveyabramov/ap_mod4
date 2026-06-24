@@ -1048,7 +1048,7 @@
 
     /* Collection page */
 
-        body[data-page="collection"] {
+    body[data-page="collection"] {
         --collection-page-card-width: clamp(280px, 43.1vw, 331px);
         --collection-page-card-height: clamp(340px, 35.3svh, 413px);
         --collection-page-image-size: min(280px, calc(var(--collection-page-card-width) - 51px));
@@ -1146,6 +1146,110 @@
     }
 
     .collection-card__title {
+        padding: 3px 5px;
+        font-size: 14px;
+    }
+
+       /* merch page */
+
+    body[data-page="merch"] {
+        --merch-page-card-width: clamp(280px, 43.1vw, 331px);
+        --merch-page-card-height: clamp(340px, 35.3svh, 413px);
+        --merch-page-image-size: min(280px, calc(var(--merch-page-card-width) - 51px));
+        --merch-page-track-offset: clamp(90px, 12.2svh, 143px);
+    }
+
+    .merch-card {
+        border-top: 2px solid #555;
+    }
+
+    .merch-card:first-child {
+        border-left: 2px solid #555;
+    }
+
+    .container.merch-hero__wrapper {
+        grid-template-rows:
+            80px
+            clamp(260px, 26.3svh, 308px)
+            80px
+            minmax(calc(var(--merch-page-track-offset) + var(--merch-page-card-height)), 1fr);
+        height: auto;
+        min-height: 100svh;
+        overflow: hidden;
+    }
+
+    .merch-hero__title.h1 {
+        grid-column: 1 / -1;
+        margin: clamp(32px, 4.3svh, 50px) 0 0;
+        font-size: clamp(84px, 13vw, 100px);
+    }
+
+    .merch-tabs__button {
+        height: 80px;
+        padding-inline: 10px;
+        font-size: 16px;
+    }
+
+    .merch-panel {
+        position: relative;
+        padding-top: var(--merch-page-track-offset);
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .merch-panel::before {
+        content: '';
+        position: absolute;
+        top: calc(var(--merch-page-track-offset) - 26px);
+        right: 5px;
+        z-index: 1;
+        width: 50px;
+        height: 16px;
+        background: url('../../images/cards-scroll.svg') center / cover no-repeat;
+        pointer-events: none;
+    }
+
+    .merch-cards {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        height: var(--merch-page-card-height);
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        touch-action: pan-x pan-y;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .merch-cards::-webkit-scrollbar {
+        display: none;
+    }
+
+    .merch-card,
+    .merch-card:last-child {
+        flex: 0 0 var(--merch-page-card-width);
+        width: var(--merch-page-card-width);
+        height: var(--merch-page-card-height);
+        border-right: 2px solid #555;
+        scroll-snap-align: start;
+    }
+
+    .merch-card {
+        grid-template-rows: minmax(0, 1fr) 22px;
+    }
+
+    .merch-card__image-wrapper {
+        padding: 0;
+    }
+
+    .merch-card__image {
+        width: var(--merch-page-image-size);
+        height: var(--merch-page-image-size);
+    }
+
+    .merch-card__title {
         padding: 3px 5px;
         font-size: 14px;
     }
@@ -1768,6 +1872,44 @@
     }
 
     .collection-card__title {
+        padding: 2px 5px;
+        font-size: 12px;
+    }
+
+    /* merch page */
+
+    body[data-page="merch"] {
+        --merch-page-card-width: clamp(220px, 74.1vw, 237px);
+        --merch-page-card-height: clamp(232px, 78.2vw, 250px);
+        --merch-page-image-size: min(200px, calc(var(--merch-page-card-width) - 37px));
+        --merch-page-track-offset: 36px;
+    }
+
+    .container.merch-hero__wrapper {
+        grid-template-rows:
+            var(--mobile-header-height) 169px 50px minmax(calc(var(--merch-page-track-offset) + var(--merch-page-card-height)), 1fr);
+    }
+
+    .merch-hero__title.h1 {
+        margin: 20px 0 0;
+        font-size: clamp(42px, 13.5vw, 64px);
+    }
+
+    .merch-tabs__button {
+        height: 50px;
+        padding-inline: 4px;
+        font-size: 12px;
+    }
+
+    .merch-panel::before {
+        top: 10px;
+    }
+
+    .merch-card {
+        grid-template-rows: minmax(0, 1fr) 20px;
+    }
+
+    .merch-card__title {
         padding: 2px 5px;
         font-size: 12px;
     }
