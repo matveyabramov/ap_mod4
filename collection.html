@@ -4,29 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Коллекция — Музей случайностей</title>
+    <link rel="icon" href="./images/logo.jpg">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/pages/collection.css">
 </head>
 <body data-page="collection">
-    <header class="header">
-        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
-        <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION / 2026</div>
-        <nav class="header__nav" aria-label="Основная навигация">
-            <a href="./about.html" class="header__nav-item button-text">О&nbsp;музее</a>
-            <a href="./collection.html" class="header__nav-item button-text" aria-current="page">Коллекция</a>
-            <a href="./events.html" class="header__nav-item button-text">События</a>
-            <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
-        </nav>
-        <button class="header__btn button arrow-up-right-decorator" type="button">Отправить находку</button>
-        <button class="header__burger" type="button" aria-label="Открыть меню"
-            aria-expanded="false" aria-controls="mobile-menu" hidden>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
+    <main class="collection-page">
+        <section class="collection-hero">
+            <div class="collection-hero__wrapper container">
+                <header class="header">
+                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION / 2026
+                    </div>
+                    <nav class="header__nav" aria-label="Основная навигация">
+                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
+                        <a href="./collection.html" class="header__nav-item button-text" aria-current="page">Коллекция</a>
+                        <a href="./events.html" class="header__nav-item button-text">События</a>
+                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                    </nav>
+                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false"
+                        aria-controls="mobile-menu" hidden>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </header>
+                <h1 class="collection-hero__title h1">Коллекция случайностей</h1>
+                <div class="collection-tabs" role="tablist" aria-label="Категории коллекции">
+                    <button class="collection-tabs__button is-active" id="collection-tab-broken-images" type="button"
+                        role="tab" aria-selected="true" aria-controls="collection-panel-broken-images" tabindex="0"
+                        data-collection-tab="broken-images">
+                        Битые изображения
+                    </button>
+                    <button class="collection-tabs__button" id="collection-tab-print-errors" type="button" role="tab"
+                        aria-selected="false" aria-controls="collection-panel-print-errors" tabindex="-1"
+                        data-collection-tab="print-errors">
+                        Ошибки печати
+                    </button>
+                    <button class="collection-tabs__button" id="collection-tab-random-forms" type="button" role="tab"
+                        aria-selected="false" aria-controls="collection-panel-random-forms" tabindex="-1"
+                        data-collection-tab="random-forms">
+                        Случайные формы
+                    </button>
+                </div>
 
-    <main class="page page--collection">
-        <h1 class="page__title h2">Коллекция</h1>
+                <div class="collection-panels">
+                    <section class="collection-panel is-active" id="collection-panel-broken-images" role="tabpanel"
+                        aria-labelledby="collection-tab-broken-images" data-collection-panel="broken-images">
+                        <div class="collection-cards">
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/broken-images/item1.jpg" alt="Битое изображение, артефакт 001">
+                                </div>
+                                <h2 class="collection-card__title">Фрагмент присутствия</h2>
+                            </div>
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/broken-images/item2.jpg" alt="Битое изображение, артефакт 002">
+                                </div>
+                                <h2 class="collection-card__title">Городская потеря</h2>
+                            </div>
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/broken-images/item3.jpg" alt="Битое изображение, артефакт 003">
+                                </div>
+                                <h2 class="collection-card__title">Лицо</h2>
+                            </div>
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/broken-images/item4.jpg" alt="Битое изображение, артефакт 004">
+                                </div>
+                                <h2 class="collection-card__title">Переписка</h2>
+                            </div>
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/broken-images/item5.jpg" alt="Битое изображение, артефакт 005">
+                                </div>
+                                <h2 class="collection-card__title">Нарушение памяти</h2>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="collection-panel" id="collection-panel-print-errors" role="tabpanel"
+                        aria-labelledby="collection-tab-print-errors" data-collection-panel="print-errors" hidden>
+                        <div class="collection-cards">
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/print-errors/item1.jpg"
+                                        alt="Битое изображение, артефакт 001">
+                                </div>
+                                <h2 class="collection-card__title">Съехавший портрет</h2>
+                            </div>
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/print-errors/item2.jpg"
+                                        alt="Битое изображение, артефакт 002">
+                                </div>
+                                <h2 class="collection-card__title">Зажёванный город</h2>
+                            </div>
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/print-errors/item3.jpg"
+                                        alt="Битое изображение, артефакт 003">
+                                </div>
+                                <h2 class="collection-card__title">Перепечатанный текст</h2>
+                            </div>
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/print-errors/item4.jpg"
+                                        alt="Битое изображение, артефакт 004">
+                                </div>
+                                <h2 class="collection-card__title">Слепое пятно</h2>
+                            </div>
+                            <div class="collection-card">
+                                <div class="collection-card__image-wrapper">
+                                    <img class="collection-card__image" src="./images/collection-page/print-errors/item5.jpg"
+                                        alt="Битое изображение, артефакт 005">
+                                </div>
+                                <h2 class="collection-card__title">Чернильный срыв</h2>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="collection-panel" id="collection-panel-random-forms" role="tabpanel"
+                        aria-labelledby="collection-tab-random-forms" data-collection-panel="random-forms" hidden>
+                    <div class="collection-cards">
+                        <div class="collection-card">
+                            <div class="collection-card__image-wrapper">
+                                <img class="collection-card__image" src="./images/collection-page/random-forms/item1.jpg"
+                                    alt="Битое изображение, артефакт 001">
+                            </div>
+                            <h2 class="collection-card__title">Птица</h2>
+                        </div>
+                        <div class="collection-card">
+                            <div class="collection-card__image-wrapper">
+                                <img class="collection-card__image" src="./images/collection-page/random-forms/item2.jpg"
+                                    alt="Битое изображение, артефакт 002">
+                            </div>
+                            <h2 class="collection-card__title">Шум</h2>
+                        </div>
+                        <div class="collection-card">
+                            <div class="collection-card__image-wrapper">
+                                <img class="collection-card__image" src="./images/collection-page/random-forms//item3.jpg"
+                                    alt="Битое изображение, артефакт 003">
+                            </div>
+                            <h2 class="collection-card__title">Лицо в стене</h2>
+                        </div>
+                        <div class="collection-card">
+                            <div class="collection-card__image-wrapper">
+                                <img class="collection-card__image" src="./images/collection-page/random-forms/item4.jpg"
+                                    alt="Битое изображение, артефакт 004">
+                            </div>
+                            <h2 class="collection-card__title">Без названия</h2>
+                        </div>
+                        <div class="collection-card">
+                            <div class="collection-card__image-wrapper">
+                                <img class="collection-card__image" src="./images/collection-page/random-forms/item5.jpg"
+                                    alt="Битое изображение, артефакт 005">
+                            </div>
+                            <h2 class="collection-card__title">Случайная карта</h2>
+                        </div>
+                    </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer__container container">
+                <h2 class="footer__heading h2">Музей случайностей <br> Цифровой архив</h2>
+                <div class="footer__contacts">
+                    <div class="footer__group text footer-text">БПД311</div>
+                    <div class="footer__author text footer-text">Абрамов Матвей</div>
+                </div>
+                <div class="footer__model model-viewer">
+                    <div class="model-viewer__stage">
+                        <img src="./images/animation-frames/0150.webp" alt="Кристалл" class="model-viewer__placeholder">
+                        <canvas class="model-viewer__canvas">
+                            Ваш браузер не поддерживает Canvas.
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true" hidden>
@@ -47,7 +205,17 @@
     </div>
 
     <script src="./scripts/horizontal-scroll.js" defer></script>
+    <script src="./scripts/section-transitions.js" defer></script>
     <script src="./scripts/mobile-menu.js" defer></script>
     <script src="./scripts/pages/collection.js" defer></script>
+    <script type="importmap">
+                    {
+                        "imports": {
+                            "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
+                            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+                        }
+                    }
+    </script>
+    <script type="module" src="./scripts/meteor-model.js"></script>
 </body>
 </html>

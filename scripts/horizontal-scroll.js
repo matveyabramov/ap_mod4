@@ -4,7 +4,7 @@
     const adaptiveQuery = window.matchMedia('(max-width: 1279px)');
     const mobileQuery = window.matchMedia('(max-width: 767px)');
     const scrollAreas = document.querySelectorAll(
-        '.collection__cards, .space__gallery-scroll, .space__gallery, .events__cards, .souvenirs__cards',
+        '.collection__cards, .collection-cards, .space__gallery-scroll, .space__gallery, .events__cards, .souvenirs__cards',
     );
 
     if (!scrollAreas.length) {

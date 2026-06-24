@@ -46,6 +46,15 @@
             autoActivate: true,
             anchorNavigation: true,
         },
+        collection: {
+            sections: [
+                '.collection-hero',
+                '.footer',
+            ],
+            initialSection: '.collection-hero',
+            autoActivate: true,
+            anchorNavigation: false,
+        },
     };
 
     const PAGE_TRANSITION_DURATION = 800;
@@ -58,6 +67,7 @@
         '[data-horizontal-scroll]',
         '.collection__cards',
         '.collection__cards-scroll',
+        '.collection-cards',
         '.space__gallery',
         '.space__gallery-scroll',
         '.events__cards',

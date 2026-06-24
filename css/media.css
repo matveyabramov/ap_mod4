@@ -13,6 +13,10 @@
         --adaptive-bottom-row: clamp(80px, 15svh, 109px);
     }
 
+    .h1 {
+        font-size: 115px;
+    }
+
     .container,
     .header {
         grid-template-columns: repeat(10, minmax(0, 1fr));
@@ -1041,6 +1045,110 @@
         grid-template-columns: repeat(3, min(72vw, 560px));
         width: max-content;
     }
+
+    /* Collection page */
+
+        body[data-page="collection"] {
+        --collection-page-card-width: clamp(280px, 43.1vw, 331px);
+        --collection-page-card-height: clamp(340px, 35.3svh, 413px);
+        --collection-page-image-size: min(280px, calc(var(--collection-page-card-width) - 51px));
+        --collection-page-track-offset: clamp(90px, 12.2svh, 143px);
+    }
+
+    .collection-card {
+        border-top: 2px solid #555;
+    }
+
+    .collection-card:first-child {
+        border-left: 2px solid #555;
+    }
+
+    .container.collection-hero__wrapper {
+        grid-template-rows:
+            80px
+            clamp(260px, 26.3svh, 308px)
+            80px
+            minmax(calc(var(--collection-page-track-offset) + var(--collection-page-card-height)), 1fr);
+        height: auto;
+        min-height: 100svh;
+        overflow: hidden;
+    }
+
+    .collection-hero__title.h1 {
+        grid-column: 1 / -1;
+        margin: clamp(32px, 4.3svh, 50px) 0 0;
+        font-size: clamp(84px, 13vw, 100px);
+    }
+
+    .collection-tabs__button {
+        height: 80px;
+        padding-inline: 10px;
+        font-size: 16px;
+    }
+
+    .collection-panel {
+        position: relative;
+        padding-top: var(--collection-page-track-offset);
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .collection-panel::before {
+        content: '';
+        position: absolute;
+        top: calc(var(--collection-page-track-offset) - 26px);
+        right: 5px;
+        z-index: 1;
+        width: 50px;
+        height: 16px;
+        background: url('../../images/cards-scroll.svg') center / cover no-repeat;
+        pointer-events: none;
+    }
+
+    .collection-cards {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        height: var(--collection-page-card-height);
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        touch-action: pan-x pan-y;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .collection-cards::-webkit-scrollbar {
+        display: none;
+    }
+
+    .collection-card,
+    .collection-card:last-child {
+        flex: 0 0 var(--collection-page-card-width);
+        width: var(--collection-page-card-width);
+        height: var(--collection-page-card-height);
+        border-right: 2px solid #555;
+        scroll-snap-align: start;
+    }
+
+    .collection-card {
+        grid-template-rows: minmax(0, 1fr) 22px;
+    }
+
+    .collection-card__image-wrapper {
+        padding: 0;
+    }
+
+    .collection-card__image {
+        width: var(--collection-page-image-size);
+        height: var(--collection-page-image-size);
+    }
+
+    .collection-card__title {
+        padding: 3px 5px;
+        font-size: 14px;
+    }
 }
 
 /* 320px mobile adaptive */
@@ -1621,5 +1729,46 @@
 
     .about-randomness__copy {
         grid-row: 5;
+    }
+
+    /* collection page */
+
+        body[data-page="collection"] {
+        --collection-page-card-width: clamp(220px, 74.1vw, 237px);
+        --collection-page-card-height: clamp(232px, 78.2vw, 250px);
+        --collection-page-image-size: min(200px, calc(var(--collection-page-card-width) - 37px));
+        --collection-page-track-offset: 36px;
+    }
+
+    .container.collection-hero__wrapper {
+        grid-template-rows:
+            var(--mobile-header-height)
+            169px
+            50px
+            minmax(calc(var(--collection-page-track-offset) + var(--collection-page-card-height)), 1fr);
+    }
+
+    .collection-hero__title.h1 {
+        margin: 20px 0 0;
+        font-size: clamp(42px, 13.5vw, 64px);
+    }
+
+    .collection-tabs__button {
+        height: 50px;
+        padding-inline: 4px;
+        font-size: 12px;
+    }
+
+    .collection-panel::before {
+        top: 10px;
+    }
+
+    .collection-card {
+        grid-template-rows: minmax(0, 1fr) 20px;
+    }
+
+    .collection-card__title {
+        padding: 2px 5px;
+        font-size: 12px;
     }
 }

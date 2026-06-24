@@ -2,4 +2,5 @@
 @import url('fonts.css');
 @import url('layout.css');
 @import url(./pages/about.css);
+@import url('./pages/collection.css');
 @import url('media.css');
