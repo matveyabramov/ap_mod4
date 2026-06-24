@@ -1,0 +1,335 @@
+body.is-submission-modal-open {
+    overflow: hidden;
+}
+
+.submission-modal[hidden] {
+    display: none;
+}
+
+.submission-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    min-height: 100svh;
+
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.submission-modal,
+.submission-modal input,
+.submission-modal textarea,
+.submission-modal button,
+.submission-modal input::placeholder,
+.submission-modal textarea::placeholder {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.submission-modal__heading {
+    font-family: "Gridtile", monospace;
+}
+
+.submission-modal__overlay {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+    padding: 0;
+
+    border: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    cursor: pointer;
+}
+
+.submission-modal__panel {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    width: calc(100vw - 40px);
+    height: calc(100svh - 40px);
+
+    padding:
+        clamp(40px, 6svh, 80px) max(80px, calc((100% - 950px) / 2));
+
+    overflow-y: auto;
+
+    border: 2px solid #555;
+    background-color: #000;
+
+    box-sizing: border-box;
+}
+
+.submission-modal__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 80px;
+    height: 80px;
+    padding: 0;
+
+    border: 0;
+    border-bottom: 2px solid #555;
+    border-left: 2px solid #555;
+
+    background-color: #282828;
+    color: #d2d2d2;
+
+    cursor: pointer;
+}
+
+.submission-modal__close span {
+    position: absolute;
+
+    width: 30px;
+    height: 2px;
+
+    background-color: currentColor;
+}
+
+.submission-modal__close span:first-child {
+    transform: rotate(45deg);
+}
+
+.submission-modal__close span:last-child {
+    transform: rotate(-45deg);
+}
+
+.submission-modal__heading,
+.submission-modal__form {
+    width: min(950px, 100%);
+}
+
+.submission-modal__text {
+    width: min(520px, 100%);
+    margin-top: clamp(24px, 4svh, 45px);
+}
+
+.submission-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    margin-top: clamp(32px, 5svh, 65px);
+}
+
+.submission-modal__field {
+    width: 100%;
+    min-height: 60px;
+    padding: 20px 25px;
+
+    border: 0;
+    border-radius: 0;
+    outline: none;
+
+    background-color: #252525;
+    color: #8e8e8e;
+
+    text-transform: uppercase;
+
+    box-sizing: border-box;
+}
+
+.submission-modal__field::placeholder {
+    color: #8e8e8e;
+    opacity: 1;
+}
+
+.submission-modal__checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    cursor: pointer;
+}
+
+.submission-modal__checkbox-input {
+    position: absolute;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.submission-modal__checkbox-box {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+
+    width: 14px;
+    height: 14px;
+    margin-top: 2px;
+
+    border: 1px solid #555;
+    background-color: transparent;
+
+    box-sizing: border-box;
+}
+
+.submission-modal__checkbox-input:checked+.submission-modal__checkbox-box {
+    border-color: #d2d2d2;
+    background-color: #d2d2d2;
+}
+
+.submission-modal__checkbox-input:checked+.submission-modal__checkbox-box::after {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    background-color: #000;
+}
+
+.submission-modal__checkbox-text {
+    max-width: 480px;
+
+    color: #707070;
+
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.submission-modal__submit {
+    width: 100%;
+    height: 80px;
+    margin-top: 22px;
+
+    cursor: pointer;
+}
+
+@media (max-width: 1919px) {
+    .submission-modal__panel {
+        padding:
+            clamp(32px, 5svh, 70px) max(60px, calc((100% - 950px) / 2));
+    }
+
+    .submission-modal__heading {
+        font-size: 94px;
+    }
+
+    .submission-modal__form {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 1279px) {
+    .submission-modal__panel {
+        width: calc(100vw - 20px);
+        height: calc(100svh - 20px);
+
+        padding: clamp(32px, 5svh, 64px) 40px;
+    }
+
+    .submission-modal__close {
+        width: 70px;
+        height: 70px;
+    }
+
+    .submission-modal__heading {
+        font-size: 68px;
+    }
+
+    .submission-modal__text {
+        margin-top: clamp(22px, 3.5svh, 30px);
+    }
+
+    .submission-modal__form {
+        gap: 12px;
+        margin-top: clamp(28px, 4svh, 35px);
+    }
+
+    .submission-modal__submit {
+        height: 65px;
+        margin-top: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .submission-modal__panel {
+        width: calc(100vw - 10px);
+        height: calc(100svh - 10px);
+
+        padding: clamp(54px, 9svh, 72px) 10px 16px;
+
+        align-content: center;
+    }
+
+    .submission-modal__close {
+        width: 54px;
+        height: 54px;
+    }
+
+    .submission-modal__close span {
+        width: 23px;
+    }
+
+    .submission-modal__heading {
+        font-size: clamp(38px, 13vw, 52px);
+    }
+
+    .submission-modal__text {
+        margin-top: 20px;
+
+        font-size: 12px;
+        line-height: 1.2;
+    }
+
+    .submission-modal__form {
+        gap: 8px;
+        margin-top: 24px;
+    }
+
+    .submission-modal__field {
+        min-height: 48px;
+        padding: 14px 15px;
+
+        font-size: 14px;
+    }
+
+    .submission-modal__checkbox {
+        gap: 8px;
+    }
+
+    .submission-modal__checkbox-text {
+        max-width: none;
+
+        font-size: 10px;
+        line-height: 1.1;
+    }
+
+    .submission-modal__submit {
+        height: 56px;
+        margin-top: 12px;
+
+        font-size: 14px;
+    }
+}
+
+/* Если высота экрана совсем маленькая, контент лучше начинать сверху,
+   чтобы он нормально скроллился внутри попапа, а не обрезался. */
+@media (max-height: 720px) {
+    .submission-modal__panel {
+        align-content: start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .submission-modal__overlay,
+    .submission-modal__panel {
+        scroll-behavior: auto;
+    }
+}

@@ -64,6 +64,17 @@
             autoActivate: true,
             anchorNavigation: false,
         },
+        events: {
+            sections: [
+                '.first-event',
+                '.second-event',
+                '.third-event',
+                '.footer',
+            ],
+            initialSection: '.first-event',
+            autoActivate: true,
+            anchorNavigation: false,
+        },
     };
 
     const PAGE_TRANSITION_DURATION = 800;
@@ -120,9 +131,22 @@
     }
 
     function getInitialSectionSelector() {
-        return usesMobileSections()
+        const defaultSelector = usesMobileSections()
             ? pageConfig.mobileInitialSection || pageConfig.mobileSections[0]
             : pageConfig.initialSection || pageConfig.sections[0];
+
+        if (!pageConfig.anchorNavigation || !window.location.hash) {
+            return defaultSelector;
+        }
+
+        const target = document.getElementById(
+            decodeURIComponent(window.location.hash.slice(1)),
+        );
+        const targetSection = sections.find(
+            (section) => section === target || section.contains(target),
+        );
+
+        return targetSection?.id ? `#${targetSection.id}` : defaultSelector;
     }
 
     function setActiveSection(index) {
@@ -419,26 +443,36 @@
     }
 
     function initializeAnchorNavigation() {
-        if (!pageConfig.anchorNavigation) {
-            return;
-        }
+        document.querySelectorAll('[data-scroll-target], a[href^="#"]').forEach((control) => {
+            control.addEventListener('click', (event) => {
+                const selector = control.dataset.scrollTarget || control.hash;
 
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener('click', (event) => {
-                if (!anchor.hash) {
+                if (!selector || (!control.dataset.scrollTarget && !pageConfig.anchorNavigation)) {
                     return;
                 }
 
-                const targetId = decodeURIComponent(anchor.hash.slice(1));
-                const target = document.getElementById(targetId);
+                let target = null;
+
+                try {
+                    target = document.querySelector(selector);
+                } catch {
+                    return;
+                }
+
+                if (!target) {
+                    return;
+                }
+
                 const targetIndex = sections.indexOf(target);
 
-                if (targetIndex < 0) {
+                event.preventDefault();
+
+                if (targetIndex >= 0) {
+                    goToSection(targetIndex);
                     return;
                 }
 
-                event.preventDefault();
-                goToSection(targetIndex);
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
     }

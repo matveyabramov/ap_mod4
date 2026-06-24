@@ -53,6 +53,14 @@
         }, SLIDE_LOCK_DELAY);
     }
 
+    function setDragOffset(offset) {
+        track.style.setProperty('--gallery-drag', `${offset}px`);
+    }
+
+    function resetDragOffset() {
+        setDragOffset(0);
+    }
+
     function renderGallery() {
         const slideStep = getSlideStep();
         const offset = (1 - activeSlide) * slideStep;
@@ -60,14 +68,23 @@
         track.style.setProperty('--gallery-offset', `${offset}px`);
     }
 
-    function goToSlide(index) {
-        if (isSlideLocked || slideCount <= 1) {
+    function setActiveSlide(index) {
+        activeSlide = (index + slideCount) % slideCount;
+        renderGallery();
+    }
+
+    function goToSlide(index, options = {}) {
+        const shouldIgnoreLock = options.ignoreLock === true;
+
+        if ((!shouldIgnoreLock && isSlideLocked) || slideCount <= 1) {
             return;
         }
 
-        activeSlide = (index + slideCount) % slideCount;
-        renderGallery();
-        lockSlider();
+        setActiveSlide(index);
+
+        if (!shouldIgnoreLock) {
+            lockSlider();
+        }
     }
 
     function goPrevSlide() {
@@ -76,6 +93,14 @@
 
     function goNextSlide() {
         goToSlide(activeSlide + 1);
+    }
+
+    function goPrevSlideByDrag() {
+        setActiveSlide(activeSlide - 1);
+    }
+
+    function goNextSlideByDrag() {
+        setActiveSlide(activeSlide + 1);
     }
 
     previousButton.addEventListener('click', goPrevSlide);
@@ -130,16 +155,27 @@
     }, { passive: false });
 
     viewport.addEventListener('pointerdown', (event) => {
-        if (slideCount <= 1 || event.button !== 0) {
+        if (
+            slideCount <= 1 ||
+            event.button !== 0 ||
+            event.target.closest('.about-gallery__arrow')
+        ) {
             return;
         }
+
+        event.preventDefault();
 
         isDragging = true;
         dragStartX = event.clientX;
         dragCurrentX = event.clientX;
         activePointerId = event.pointerId;
 
-        viewport.setPointerCapture?.(activePointerId);
+        resetDragOffset();
+
+        if (viewport.setPointerCapture) {
+            viewport.setPointerCapture(activePointerId);
+        }
+
         viewport.classList.add('is-dragging');
     });
 
@@ -148,7 +184,12 @@
             return;
         }
 
+        event.preventDefault();
+
         dragCurrentX = event.clientX;
+
+        const dragDistance = dragCurrentX - dragStartX;
+        setDragOffset(dragDistance);
     });
 
     function finishDrag(event) {
@@ -157,19 +198,27 @@
         }
 
         const dragDistance = dragCurrentX - dragStartX;
+        const pointerId = activePointerId;
 
         isDragging = false;
         activePointerId = null;
         viewport.classList.remove('is-dragging');
 
+        if (viewport.hasPointerCapture?.(pointerId)) {
+            viewport.releasePointerCapture(pointerId);
+        }
+
+        resetDragOffset();
+
         if (Math.abs(dragDistance) < DRAG_THRESHOLD) {
+            renderGallery();
             return;
         }
 
         if (dragDistance < 0) {
-            goNextSlide();
+            goNextSlideByDrag();
         } else {
-            goPrevSlide();
+            goPrevSlideByDrag();
         }
     }
 
@@ -177,12 +226,19 @@
     viewport.addEventListener('pointercancel', finishDrag);
 
     viewport.addEventListener('lostpointercapture', () => {
+        if (!isDragging) {
+            return;
+        }
+
         isDragging = false;
         activePointerId = null;
         viewport.classList.remove('is-dragging');
+        resetDragOffset();
+        renderGallery();
     });
 
     window.addEventListener('resize', renderGallery);
 
+    resetDragOffset();
     renderGallery();
 })();

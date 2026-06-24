@@ -12,8 +12,12 @@
         return;
     }
 
-    const activateTab = (tab, moveFocus = false) => {
-        const category = tab.dataset.merchTab;
+    const activateTab = (tabName, { moveFocus = false, updateHash = false } = {}) => {
+        const tab = tabs.find((item) => item.dataset.merchTab === tabName);
+
+        if (!tab) {
+            return false;
+        }
 
         tabs.forEach((item) => {
             const isActive = item === tab;
@@ -23,7 +27,7 @@
         });
 
         panels.forEach((panel) => {
-            const isActive = panel.dataset.merchPanel === category;
+            const isActive = panel.dataset.merchPanel === tabName;
             panel.classList.toggle('is-active', isActive);
             panel.hidden = !isActive;
         });
@@ -31,10 +35,22 @@
         if (moveFocus) {
             tab.focus();
         }
+
+        if (updateHash) {
+            window.history.replaceState(
+                window.history.state,
+                '',
+                `${window.location.pathname}${window.location.search}#${tabName}`,
+            );
+        }
+
+        return true;
     };
 
     tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => activateTab(tab));
+        tab.addEventListener('click', () => {
+            activateTab(tab.dataset.merchTab, { updateHash: true });
+        });
 
         tab.addEventListener('keydown', (event) => {
             let nextIndex = index;
@@ -52,10 +68,42 @@
             }
 
             event.preventDefault();
-            activateTab(tabs[nextIndex], true);
+            activateTab(tabs[nextIndex].dataset.merchTab, {
+                moveFocus: true,
+                updateHash: true,
+            });
         });
     });
 
     const initialTab = tabs.find((tab) => tab.classList.contains('is-active')) || tabs[0];
-    activateTab(initialTab);
+    const defaultTabName = initialTab.dataset.merchTab;
+
+    function getHashTabName() {
+        if (!window.location.hash) {
+            return '';
+        }
+
+        try {
+            return decodeURIComponent(window.location.hash.slice(1));
+        } catch {
+            return '';
+        }
+    }
+
+    function activateTabFromHash({ fallbackToDefault = false } = {}) {
+        const tabName = getHashTabName();
+
+        if (tabName === 'open-popup') {
+            return;
+        }
+
+        if (!activateTab(tabName) && fallbackToDefault) {
+            activateTab(defaultTabName);
+        }
+    }
+
+    activateTabFromHash({ fallbackToDefault: true });
+    window.addEventListener('hashchange', () => {
+        activateTabFromHash({ fallbackToDefault: true });
+    });
 })();

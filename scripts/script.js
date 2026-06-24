@@ -11,6 +11,7 @@
     const TOUCH_INERTIA_MIN_VELOCITY = 0.02;
     const TOUCH_INERTIA_MAX_VELOCITY = 0.45;
     const TOUCH_INERTIA_MAX_IDLE = 80;
+    const CTA_SEQUENCE_DURATION = 1200;
 
     function initializeMeteorTransition() {
         const siteStage = document.querySelector('.site-stage');
@@ -330,6 +331,69 @@
             scrollProgress = 0;
             sequence.jumpToProgress(0);
             sequenceInputUnlockAt = performance.now() + 70;
+        }
+
+        async function handleHeroButtonClick(event) {
+            event.preventDefault();
+            await startTransition();
+
+            if (!transitionReady || aboutVisible) {
+                return;
+            }
+
+            const initialProgress = scrollProgress;
+            const duration = Math.max(
+                1,
+                CTA_SEQUENCE_DURATION * (1 - initialProgress),
+            );
+            const scrollDistance = Math.max(window.innerHeight * 2, 1200);
+            const sensitivity = adaptiveViewport.matches
+                ? ADAPTIVE_SEQUENCE_SENSITIVITY
+                : 1;
+            const startedAt = performance.now();
+
+            sequenceInputLocked = true;
+            sequenceInputUnlockAt = Infinity;
+
+            await new Promise((resolve) => {
+                function step(currentTime) {
+                    if (
+                        !transitionStarted ||
+                        !transitionReady ||
+                        returningToHero ||
+                        aboutVisible
+                    ) {
+                        resolve();
+                        return;
+                    }
+
+                    const elapsed = Math.min((currentTime - startedAt) / duration, 1);
+                    const easedProgress = elapsed * elapsed * (3 - 2 * elapsed);
+                    const targetProgress = initialProgress +
+                        (1 - initialProgress) * easedProgress;
+                    const delta = (targetProgress - scrollProgress) *
+                        scrollDistance / sensitivity;
+
+                    if (delta > 0) {
+                        updateScrollProgress(delta);
+                    }
+
+                    if (elapsed < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        resolve();
+                    }
+                }
+
+                requestAnimationFrame(step);
+            });
+
+            sequenceInputLocked = false;
+            sequenceInputUnlockAt = 0;
+
+            if (transitionReady && scrollProgress === 1) {
+                await transitionToAbout();
+            }
         }
 
         function updateScrollProgress(delta) {
@@ -653,7 +717,7 @@
         window.addEventListener('touchend', handleTouchEnd, { passive: true });
         window.addEventListener('touchcancel', handleTouchCancel, { passive: true });
         window.addEventListener('resize', () => sequence.resize(), { passive: true });
-        heroButton?.addEventListener('click', startTransition);
+        heroButton?.addEventListener('click', handleHeroButtonClick);
 
         window.meteorSequence = sequence;
     }

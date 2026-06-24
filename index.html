@@ -11,15 +11,17 @@
         <section class="hero">
             <div class="hero__wrapper container">
                 <header class="header">
-                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <a href="/" class="header__logo-link" aria-label="На главную">
+                        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
+                    </a>
                     <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION / 2026</div>
                     <nav class="header__nav">
-                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
-                        <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
-                        <a href="./events.html" class="header__nav-item button-text">События</a>
-                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                        <a href="/about/" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection/" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events/" class="header__nav-item button-text">События</a>
+                        <a href="/merch/" class="header__nav-item button-text">Магазин</a>
                     </nav>
-                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__btn button arrow-up-right-decorator" type="button" data-submission-modal-open>Отправить находку</button>
                     <button class="header__burger" type="button" aria-label="Открыть меню"
                         aria-expanded="false" aria-controls="mobile-menu" hidden>
                         <span></span>
@@ -46,7 +48,7 @@
                     <div class="hero__scroll-text text text-gray">Scroll</div>
                     <div class="hero__scroll-arrow text text-gray">↓</div>
                 </div>
-                <button class="hero__btn button bottom-right-btn arrow-down-decorator">Смотреть коллекцию</button>
+                <button class="hero__btn button bottom-right-btn arrow-down-decorator" type="button" data-hero-about-trigger>Узнать подробнее</button>
 
                 <div class="hero__line-horizontal hero__line-horizontal-top"></div>
                 <div class="hero__line-horizontal hero__line-horizontal-middle"></div>
@@ -75,16 +77,18 @@
         <section class="about">
             <div class="about__wrapper container">
                 <header class="header">
-                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <a href="/" class="header__logo-link" aria-label="На главную">
+                        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
+                    </a>
                     <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION / 2026
                     </div>
                     <nav class="header__nav">
-                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
-                        <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
-                        <a href="./events.html" class="header__nav-item button-text">События</a>
-                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                        <a href="/about/" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection/" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events/" class="header__nav-item button-text">События</a>
+                        <a href="/merch/" class="header__nav-item button-text">Магазин</a>
                     </nav>
-                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__btn button arrow-up-right-decorator" type="button" data-submission-modal-open>Отправить находку</button>
                     <button class="header__burger" type="button" aria-label="Открыть меню"
                         aria-expanded="false" aria-controls="mobile-menu" hidden>
                         <span></span>
@@ -106,7 +110,7 @@
                         </canvas>
                     </div>
                 </div>
-                <button class="about__btn button bottom-right-btn arrow-down-decorator">Далее</button>
+                <button class="about__btn button bottom-right-btn arrow-down-decorator" data-scroll-target=".collection">Далее</button>
 
                 <div class="scroll">
                     <div class="scroll-text text text-gray">Scroll</div>
@@ -118,17 +122,19 @@
         <section class="collection">
             <div class="collection__wrapper container">
                 <header class="header">
-                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <a href="/" class="header__logo-link" aria-label="На главную">
+                        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
+                    </a>
                     <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION /
                         2026
                     </div>
                     <nav class="header__nav">
-                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
-                        <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
-                        <a href="./events.html" class="header__nav-item button-text">События</a>
-                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                        <a href="/about/" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection/" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events/" class="header__nav-item button-text">События</a>
+                        <a href="/merch/" class="header__nav-item button-text">Магазин</a>
                     </nav>
-                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__btn button arrow-up-right-decorator" type="button" data-submission-modal-open>Отправить находку</button>
                     <button class="header__burger" type="button" aria-label="Открыть меню"
                         aria-expanded="false" aria-controls="mobile-menu" hidden>
                         <span></span>
@@ -138,16 +144,18 @@
                 <h2 class="collection__heading h2">Коллекция случайного</h2>
                 <div class="collection__cards-scroll">
                     <div class="collection__cards">
-                        <div class="collection__card collection__card--001">
+                        <a href="/collection/#broken-images" class="collection__card collection__card--001">
                             <div class="collection__card__meta text text-gray">RND–001 / BROKEN IMAGE</div>
-                            <img src="./images/main/collection/RND–001.png" class="collection__card__image" alt="Разрушающееся пиксельное изображение">
+                            <img src="./images/main/collection/RND–001.png" class="collection__card__image"
+                                alt="Разрушающееся пиксельное изображение">
                             <div class="collection__card-divider"></div>
                             <div class="collection__card__title">
                                 <div class="collection__card__title-text text">Битые изображения</div>
                                 <div class="collection__card__arrow text">→</div>
                             </div>
-                        </div>
-                        <div class="collection__card collection__card--002">
+                        </a>
+                    
+                        <a href="/collection/" class="collection__card collection__card--002">
                             <div class="collection__card__meta text text-gray">RND–002 / Found Phrase</div>
                             <img src="./images/main/collection/RND–002.png" class="collection__card__image"
                                 alt="Разрушающееся пиксельное изображение">
@@ -156,8 +164,9 @@
                                 <div class="collection__card__title-text text">Найденные фразы</div>
                                 <div class="collection__card__arrow text">→</div>
                             </div>
-                        </div>
-                        <div class="collection__card collection__card--003">
+                        </a>
+                    
+                        <a href="/collection/#print-errors" class="collection__card collection__card--003">
                             <div class="collection__card__meta text text-gray">RND–003 / Print Error</div>
                             <img src="./images/main/collection/RND–003.png" class="collection__card__image"
                                 alt="Разрушающееся пиксельное изображение">
@@ -166,8 +175,9 @@
                                 <div class="collection__card__title-text text">Ошибки печати</div>
                                 <div class="collection__card__arrow text">→</div>
                             </div>
-                        </div>
-                        <div class="collection__card collection__card--004">
+                        </a>
+                    
+                        <a href="/collection/#random-forms" class="collection__card collection__card--004">
                             <div class="collection__card__meta text text-gray">RND–004 / Random Form</div>
                             <img src="./images/main/collection/RND–004.png" class="collection__card__image"
                                 alt="Разрушающееся пиксельное изображение">
@@ -176,7 +186,7 @@
                                 <div class="collection__card__title-text text">Случайные формы</div>
                                 <div class="collection__card__arrow text">→</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="collection__rand-guard rand-guard rand-guard-non-hero">
@@ -184,7 +194,9 @@
                     <div class="rand-guard__descr text text-gray">Смотритель случайностей</div>
                 </div>
                 <div class="collection__text bottom-left-text text">Музей собирает артефакты, которые появились без замысла, но сохранили след, форму и смысл.</div>
-                <button class="collection__btn button bottom-right-btn arrow-up-right-decorator">Смотреть коллекцию</button>
+                <a href="./collection/" class="collection__btn button bottom-right-btn arrow-up-right-decorator">
+                    Смотреть коллекцию
+                </a>
                 <div class="scroll">
                     <div class="scroll-text text text-gray">Scroll</div>
                     <div class="scroll-arrow text text-gray">↓</div>
@@ -195,17 +207,19 @@
         <section class="space">
             <div class="space__wrapper container">
                 <header class="header">
-                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <a href="/" class="header__logo-link" aria-label="На главную">
+                        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
+                    </a>
                     <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION /
                         2026
                     </div>
                     <nav class="header__nav">
-                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
-                        <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
-                        <a href="./events.html" class="header__nav-item button-text">События</a>
-                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                        <a href="/about/" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection/" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events/" class="header__nav-item button-text">События</a>
+                        <a href="/merch/" class="header__nav-item button-text">Магазин</a>
                     </nav>
-                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__btn button arrow-up-right-decorator" type="button" data-submission-modal-open>Отправить находку</button>
                     <button class="header__burger" type="button" aria-label="Открыть меню"
                         aria-expanded="false" aria-controls="mobile-menu" hidden>
                         <span></span>
@@ -244,7 +258,9 @@
                 </div>
                 <div class="space__text bottom-left-text text">Музей работает как маршрут. Он ведёт посетителя через состояния: ошибка, сбой, совпадение, память. В конце случайное
                 начинает читаться иначе.</div>
-                <button class="space__btn button bottom-right-btn arrow-up-right-decorator">Смотреть пространство</button>
+                <a href="/about/#about-gallery" class="space__btn button bottom-right-btn arrow-up-right-decorator">
+                    Смотреть пространство
+                </a>
                 <div class="scroll">
                     <div class="scroll-text text text-gray">Scroll</div>
                     <div class="scroll-arrow text text-gray">↓</div>
@@ -255,17 +271,19 @@
         <section class="events">
             <div class="events__wrapper container">
                 <header class="header">
-                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <a href="/" class="header__logo-link" aria-label="На главную">
+                        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
+                    </a>
                     <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION /
                         2026
                     </div>
                     <nav class="header__nav">
-                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
-                        <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
-                        <a href="./events.html" class="header__nav-item button-text">События</a>
-                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                        <a href="/about/" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection/" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events/" class="header__nav-item button-text">События</a>
+                        <a href="/merch/" class="header__nav-item button-text">Магазин</a>
                     </nav>
-                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__btn button arrow-up-right-decorator" type="button" data-submission-modal-open>Отправить находку</button>
                     <button class="header__burger" type="button" aria-label="Открыть меню"
                         aria-expanded="false" aria-controls="mobile-menu" hidden>
                         <span></span>
@@ -279,18 +297,19 @@
                 </div>
                 <div class="events__cards-scroll">
                     <div class="events__cards">
-                    <div class="events__card events__card--001">
+                    <a href="/events/#event-1" class="events__card events__card--001">
                         <div class="events__card__meta text text-gray">Интерактивная выставка</div>
                         <div class="events__card-title">
-                            <div class="events__card-title-text text">Прикоснись к случайности</div>
+                            <div class="events__card-title-text text">Прикоснись к случайности</div>
                             <div class="events__card__arrow text">→</div>
                         </div>
                         <div class="events__card-divider"></div>
                         <div class="events__card-image-wrapper">
-                            <img src="./images/main/events/event-1.png" class="events__card-image" alt="event">
+                            <img src="./images/main/events/event-1.png" class="events__card-image" alt="Прикоснись к случайности">
                         </div>
-                    </div>
-                    <div class="events__card events__card--002">
+                    </a>
+                    
+                    <a href="/events/#event-2" class="events__card events__card--002">
                         <div class="events__card__meta text text-gray">Интерактивная прогулка-квест</div>
                         <div class="events__card-title">
                             <div class="events__card-title-text text">Тропа утерянных вещей</div>
@@ -298,10 +317,11 @@
                         </div>
                         <div class="events__card-divider"></div>
                         <div class="events__card-image-wrapper">
-                            <img src="./images/main/events/event-2.png" class="events__card-image" alt="event">
+                            <img src="./images/main/events/event-2.png" class="events__card-image" alt="Тропа утерянных вещей">
                         </div>
-                    </div>
-                    <div class="events__card events__card--003">
+                    </a>
+                    
+                    <a href="/events/#event-3" class="events__card events__card--003">
                         <div class="events__card__meta text text-gray">Интерактивная выставка</div>
                         <div class="events__card-title">
                             <div class="events__card-title-text text">Комната забытых записей</div>
@@ -309,14 +329,16 @@
                         </div>
                         <div class="events__card-divider"></div>
                         <div class="events__card-image-wrapper">
-                            <img src="./images/main/events/event-3.png" class="events__card-image" alt="event">
+                            <img src="./images/main/events/event-3.png" class="events__card-image" alt="Комната забытых записей">
                         </div>
-                    </div>
+                    </a>
                     </div>
                 </div>
                 <div class="space__text bottom-left-text text">Музей случайностей — это не только коллекция, но и программа событий. Лекции, показы, открытые наборы артефактов
                 и специальные встречи помогают рассматривать случайность как темуобсуждения и исследования.</div>
-                <button class="space__btn button bottom-right-btn arrow-up-right-decorator">Смотреть События</button>
+                <a href="/events/" class="space__btn button bottom-right-btn arrow-up-right-decorator">
+                    Смотреть события
+                </a>
                 <div class="scroll">
                     <div class="scroll-text text text-gray">Scroll</div>
                     <div class="scroll-arrow text text-gray">↓</div>
@@ -326,17 +348,19 @@
         <section class="form">
             <div class="form__wrapper container">
                 <header class="header">
-                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <a href="/" class="header__logo-link" aria-label="На главную">
+                        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
+                    </a>
                     <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL COLLECTION /
                         2026
                     </div>
                     <nav class="header__nav">
-                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
-                        <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
-                        <a href="./events.html" class="header__nav-item button-text">События</a>
-                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                        <a href="/about/" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection/" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events/" class="header__nav-item button-text">События</a>
+                        <a href="/merch/" class="header__nav-item button-text">Магазин</a>
                     </nav>
-                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__btn button arrow-up-right-decorator" type="button" data-submission-modal-open>Отправить находку</button>
                     <button class="header__burger" type="button" aria-label="Открыть меню"
                         aria-expanded="false" aria-controls="mobile-menu" hidden>
                         <span></span>
@@ -383,38 +407,41 @@
         <section class="souvenirs">
             <div class="souvenirs__wrapper container">
                 <header class="header">
-                    <img src="./images/logo.jpg" alt="logo" class="header__logo">
+                    <a href="/" class="header__logo-link" aria-label="На главную">
+                        <img src="./images/logo.jpg" alt="Логотип музея" class="header__logo">
+                    </a>
                     <div class="header__descr text text-gray">RND.MUSEUM <br> АРХИВ НЕПРЕДНАМЕРЕННОГО <br> DIGITAL souvenirs /
                         2026
                     </div>
                     <nav class="header__nav">
-                        <a href="./about.html" class="header__nav-item button-text">О музее</a>
-                        <a href="./collection.html" class="header__nav-item button-text">Коллекция</a>
-                        <a href="./events.html" class="header__nav-item button-text">События</a>
-                        <a href="./merch.html" class="header__nav-item button-text">Магазин</a>
+                        <a href="/about/" class="header__nav-item button-text">О музее</a>
+                        <a href="/collection/" class="header__nav-item button-text">Коллекция</a>
+                        <a href="/events/" class="header__nav-item button-text">События</a>
+                        <a href="/merch/" class="header__nav-item button-text">Магазин</a>
                     </nav>
-                    <button class="header__btn button arrow-up-right-decorator">Отправить находку</button>
+                    <button class="header__btn button arrow-up-right-decorator" type="button" data-submission-modal-open>Отправить находку</button>
                     <button class="header__burger" type="button" aria-label="Открыть меню"
                         aria-expanded="false" aria-controls="mobile-menu" hidden>
                         <span></span>
                         <span></span>
                     </button>
                 </header>
-                <h2 class="souvenirs__heading h2">Коллекция случайного</h2>
+                <h2 class="souvenirs__heading h2">Издания и сувениры</h2>
                 <div class="souvenirs__cards-scroll">
                     <div class="souvenirs__cards">
-                    <div class="souvenirs__card souvenirs__card--001">
-                        <div class="souvenirs__card__meta text text-gray">Книга</div>
+                    <a href="/merch/#clothes" class="souvenirs__card souvenirs__card--001">
+                        <div class="souvenirs__card__meta text text-gray">Одежда</div>
                         <div class="souvenirs__card-title">
-                            <div class="souvenirs__card-title-text text">Каталог-маршрут по музею</div>
+                            <div class="souvenirs__card-title-text text">Гардероб музея</div>
                             <div class="souvenirs__card__arrow text">→</div>
                         </div>
                         <div class="souvenirs__card-divider"></div>
                         <div class="souvenirs__card-image-wrapper">
-                            <img src="./images/main/souvenirs/book.png" class="souvenirs__card-image" alt="souvenir">
+                            <img src="./images/main/souvenirs/clothes.png" class="souvenirs__card-image" alt="Одежда музея">
                         </div>
-                    </div>
-                    <div class="souvenirs__card souvenirs__card--002">
+                    </a>
+                    
+                    <a href="/merch/#posters" class="souvenirs__card souvenirs__card--002">
                         <div class="souvenirs__card__meta text text-gray">Плакаты</div>
                         <div class="souvenirs__card-title">
                             <div class="souvenirs__card-title-text text">Постеры мероприятий</div>
@@ -422,20 +449,21 @@
                         </div>
                         <div class="souvenirs__card-divider"></div>
                         <div class="souvenirs__card-image-wrapper">
-                            <img src="./images/main/souvenirs/posters.png" class="souvenirs__card-image" alt="souvenir">
+                            <img src="./images/main/souvenirs/posters.png" class="souvenirs__card-image" alt="Постеры мероприятий">
                         </div>
-                    </div>
-                    <div class="souvenirs__card souvenirs__card--003">
-                        <div class="souvenirs__card__meta text text-gray">Мерч</div>
+                    </a>
+                    
+                    <a href="/merch/#souvenirs" class="souvenirs__card souvenirs__card--003">
+                        <div class="souvenirs__card__meta text text-gray">Сувениры</div>
                         <div class="souvenirs__card-title">
                             <div class="souvenirs__card-title-text text">Сувениры музея</div>
                             <div class="souvenirs__card__arrow text">→</div>
                         </div>
                         <div class="souvenirs__card-divider"></div>
                         <div class="souvenirs__card-image-wrapper">
-                            <img src="./images/main/souvenirs/camera.png" class="souvenirs__card-image" alt="souvenir">
+                            <img src="./images/main/souvenirs/camera.png" class="souvenirs__card-image" alt="Сувениры музея">
                         </div>
-                    </div>
+                    </a>
                     </div>
                 </div>
                 <div class="souvenirs__rand-guard rand-guard rand-guard-non-hero">
@@ -444,7 +472,9 @@
                 </div>
                 <div class="souvenirs__text bottom-left-text text">Часть музея можно унести с собой. Книга, плакаты и мерч продолжают проект за пределами пространства и переводят
                 его в другой формат.</div>
-                <button class="souvenirs__btn button bottom-right-btn arrow-up-right-decorator">Смотреть коллекцию</button>
+                <a href="/merch/" class="souvenirs__btn button bottom-right-btn arrow-up-right-decorator">
+                    Смотреть Сувениры
+                </a>
                 <div class="scroll">
                     <div class="scroll-text text text-gray">Scroll</div>
                     <div class="scroll-arrow text text-gray">↓</div>
@@ -477,23 +507,47 @@
                 <span></span>
             </button>
             <nav class="mobile-menu__nav" aria-label="Мобильная навигация">
-                <a href="./about.html" class="mobile-menu__link text">О музее</a>
-                <a href="./collection.html" class="mobile-menu__link text">Коллекция</a>
-                <a href="./events.html" class="mobile-menu__link text">События</a>
-                <a href="./merch.html" class="mobile-menu__link text">Магазин</a>
+                <a href="/about/" class="mobile-menu__link text">О музее</a>
+                <a href="/collection/" class="mobile-menu__link text">Коллекция</a>
+                <a href="/events/" class="mobile-menu__link text">События</a>
+                <a href="/merch/" class="mobile-menu__link text">Магазин</a>
             </nav>
-            <button class="mobile-menu__cta button arrow-up-right-decorator" type="button">
+            <button class="mobile-menu__cta button arrow-up-right-decorator" type="button" data-submission-modal-open>
                 Отправить находку
             </button>
         </aside>
     </div>
-    <!-- Homepage-only animation and section behavior. -->
+    <div class="submission-modal" id="submission-modal" aria-hidden="true" hidden inert>
+        <button class="submission-modal__overlay" type="button" aria-label="Закрыть форму"></button>
+        <section class="submission-modal__panel" role="dialog" aria-modal="true" aria-labelledby="submission-modal-title">
+            <button class="submission-modal__close" type="button" aria-label="Закрыть форму">
+                <span></span>
+                <span></span>
+            </button>
+            <h2 class="submission-modal__heading h2" id="submission-modal-title">Отправить свою находку</h2>
+            <p class="submission-modal__text text">Архив музея может пополняться не только кураторами, но и посетителями. Если вам встретилась ошибка, вы можете отправить её в коллекцию. Так музей остаётся открытой системой, в которой случайное продолжает происходить</p>
+            <form class="submission-modal__form" action="#" method="post">
+                <input class="submission-modal__field text" type="text" name="name" placeholder="Имя">
+                <input class="submission-modal__field text" type="text" name="description" placeholder="Краткое описание находки">
+                <label class="submission-modal__checkbox">
+                    <input class="submission-modal__checkbox-input" type="checkbox" name="privacy">
+                    <span class="submission-modal__checkbox-box"></span>
+                    <span class="submission-modal__checkbox-text text">Я подтверждаю ознакомление с политикой обработки персональных данных и даю согласие на обработку персональных данных в порядке и на условиях, указанных в политике.</span>
+                </label>
+                <button class="submission-modal__submit button" type="submit">
+                    <span>Подать артефакт</span>
+                    <span>↗</span>
+                </button>
+            </form>
+        </section>
+    </div>
     <script src="./scripts/meteor-transition.js" defer></script>
     <script src="./scripts/script.js" defer></script>
     <script src="./scripts/horizontal-scroll.js" defer></script>
     <script src="./scripts/section-transitions.js" defer></script>
-    <!-- Shared navigation behavior. -->
+    <!-- Общее -->
     <script src="./scripts/mobile-menu.js" defer></script>
+    <script src="./scripts/submission-modal.js" defer></script>
     <script type="importmap">
                 {
                     "imports": {

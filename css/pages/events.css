@@ -1,1 +1,62 @@
-/* Events page-specific styles will be added here. */
+.events-page__heading {
+    grid-column: 1 / -1;
+    grid-row: 3;
+}
+
+.event-page__divider {
+    width: 100%;
+    height: 2px;
+    background-color: #555;
+}
+
+.events-page__wrapper {
+    grid-column: 1 / -1;
+    grid-row: 4 / -1;
+    align-self: end;
+}
+
+.events-page__subwrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 5px;
+    padding: 0 5px 5px 5px;
+    gap: 5px;
+}
+
+.events-page__h3 {
+    font-size: 60px;
+    line-height: 1;
+}
+
+.events-page__info__title-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.events-page__info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    grid-column: 1;
+}
+
+.events-page__text {
+    max-width: 360px;
+}
+
+.events-page__poster1-wrapper {
+    grid-column: 2;
+}
+
+.events-page__poster2-wrapper {
+    grid-column: 3;
+}
+
+.events-page__poster3-wrapper {
+    grid-column: 4;
+}
+
+.events-page__poster {
+    width: 100%;
+}

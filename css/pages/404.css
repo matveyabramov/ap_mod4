@@ -1,0 +1,21 @@
+.error__wrapper {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.error__heading, .error__subtitle {
+    text-align: center;
+}
+
+.error__subtitle {
+    font-size: 40px;
+}
+
+.error__btn {
+    grid-column: 1 / -1;
+    grid-row: 8;
+}

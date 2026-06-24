@@ -241,10 +241,30 @@ body {
     align-items: center;
     gap: 24px;
     border: none;
+    text-decoration: none;
 }
 
 .button:hover {
     background-color: #b9b9b9;
+}
+
+button,
+a,
+.button,
+.button-text,
+.arrow-up-right-decorator,
+.arrow-down-decorator,
+.header__logo-link,
+.header__nav-item,
+.header__burger,
+.submission-modal__close,
+.submission-modal__overlay,
+.about-gallery__arrow,
+.collection-tabs__button,
+.collection__card,
+.events__card,
+.souvenirs__card {
+    cursor: pointer;
 }
 
 .scroll {
@@ -304,6 +324,22 @@ body {
 .header__logo {
     width: 80px;
     grid-column: 1 / 2;
+}
+
+.header__logo-link {
+    display: block;
+    grid-column: 1 / 2;
+    grid-row: 1;
+    width: 80px;
+    height: 80px;
+    line-height: 0;
+}
+
+.header__logo-link .header__logo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .header__descr {
@@ -568,6 +604,16 @@ body {
     object-fit: contain;
 }
 
+.model-viewer,
+.model-viewer__canvas {
+    cursor: grab;
+}
+
+.model-viewer.is-dragging,
+.model-viewer.is-dragging .model-viewer__canvas {
+    cursor: grabbing;
+}
+
 .bottom-left-text {
     grid-column: 1 / 4;
     grid-row: 8;
@@ -591,6 +637,12 @@ body {
     border: 2px solid #555555;
     display: flex;
     flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+}
+
+.collection__card:visited {
+    color: inherit;
 }
 
 .collection__card__image {
@@ -624,6 +676,7 @@ body {
 
 .collection__card--002 {
     margin-top: 154px;
+    opacity: 0;
 }
 
 
@@ -678,6 +731,12 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+}
+
+.events__card:visited {
+    color: inherit;
 }
 
 .events__card-image-wrapper,
@@ -852,6 +911,12 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+}
+
+.souvenirs__card:visited {
+    color: inherit;
 }
 
 .souvenirs__card-image {

@@ -1,7 +1,10 @@
-@import url('reset.css');
-@import url('fonts.css');
-@import url('layout.css');
+@import url('./reset.css');
+@import url('./fonts.css');
+@import url('./layout.css');
 @import url(./pages/about.css);
 @import url('./pages/collection.css');
 @import url('./pages/merch.css');
-@import url('media.css');
+@import url('./pages/events.css');
+@import url('./pages/404.css');
+@import url('./media.css');
+@import url('./submission-modal.css');
