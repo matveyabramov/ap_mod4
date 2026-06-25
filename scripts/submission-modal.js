@@ -15,7 +15,7 @@
         }
 
         event.preventDefault();
-        window.location.href = '/404.html';
+        window.location.href = '/ap_mod4/404.html';
     });
 
     function initializeSubmissionModal() {
